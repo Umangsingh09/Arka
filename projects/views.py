@@ -3,8 +3,9 @@ from django.views.decorators.http import require_http_methods
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from .forms import WebsiteRequestForm
+from .forms import WebsiteRequestForm, ContactForm
 from .models import WebsiteRequest
+from .services import send_website_request_email, send_website_request_confirmation, send_contact_form_email
 
 
 def landing(request):
@@ -35,6 +36,28 @@ def request_website(request):
                 website_request = form.save(commit=False)
                 website_request.user = request.user
                 website_request.save()
+                
+                # Send email to admin (non-blocking)
+                try:
+                    user_info = f"{request.user.first_name} {request.user.last_name}".strip() or request.user.username
+                    send_website_request_email(
+                        business_name=website_request.business_name,
+                        email=website_request.email,
+                        website_type=website_request.get_website_type_display(),
+                        description=website_request.description,
+                        budget=website_request.budget,
+                        is_logged_in=True,
+                        user_info=user_info
+                    )
+                except Exception as e:
+                    print(f"Email sending error (non-blocking): {str(e)}")
+                
+                # Send confirmation email to client
+                try:
+                    send_website_request_confirmation(website_request.email, website_request.business_name)
+                except Exception as e:
+                    print(f"Confirmation email error (non-blocking): {str(e)}")
+                
                 messages.success(request, '✅ Your website request has been submitted! Check your dashboard to track progress.')
                 return redirect('dashboard')
             else:
@@ -66,6 +89,39 @@ def dashboard(request):
     return render(request, 'dashboard.html', context)
 
 
+@require_http_methods(["GET", "POST"])
+def contact(request):
+    """Handle contact form submissions"""
+    
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            
+            # Send email to admin (non-blocking)
+            email_sent = send_contact_form_email(name, email, message)
+            
+            if email_sent:
+                messages.success(request, '✅ Your message has been sent! We will get back to you soon.')
+            else:
+                # Still show success to user, but log the error server-side
+                messages.success(request, '✅ Your message has been received! We will get back to you soon.')
+            
+            return redirect('contact')
+        else:
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({'errors': form.errors}, status=400)
+    else:
+        form = ContactForm()
+    
+    context = {
+        'form': form,
+    }
+    return render(request, 'contact.html', context)
+
+
 
 def login_view(request):
     """Custom login view"""
@@ -89,6 +145,28 @@ def login_view(request):
                     user=user,
                     **data
                 )
+                
+                # Send email to admin (non-blocking)
+                try:
+                    user_info = f"{user.first_name} {user.last_name}".strip() or user.username
+                    send_website_request_email(
+                        business_name=website_request.business_name,
+                        email=website_request.email,
+                        website_type=website_request.get_website_type_display(),
+                        description=website_request.description,
+                        budget=website_request.budget,
+                        is_logged_in=True,
+                        user_info=user_info
+                    )
+                except Exception as e:
+                    print(f"Email sending error (non-blocking): {str(e)}")
+                
+                # Send confirmation email to client
+                try:
+                    send_website_request_confirmation(website_request.email, website_request.business_name)
+                except Exception as e:
+                    print(f"Confirmation email error (non-blocking): {str(e)}")
+                
                 messages.success(request, '✅ Welcome back! Your website request has been saved.')
                 return redirect('dashboard')
             else:
@@ -152,6 +230,28 @@ def signup_view(request):
                 user=user,
                 **data
             )
+            
+            # Send email to admin (non-blocking)
+            try:
+                user_info = f"{user.first_name} {user.last_name}".strip() or user.username
+                send_website_request_email(
+                    business_name=website_request.business_name,
+                    email=website_request.email,
+                    website_type=website_request.get_website_type_display(),
+                    description=website_request.description,
+                    budget=website_request.budget,
+                    is_logged_in=True,
+                    user_info=user_info
+                )
+            except Exception as e:
+                print(f"Email sending error (non-blocking): {str(e)}")
+            
+            # Send confirmation email to client
+            try:
+                send_website_request_confirmation(website_request.email, website_request.business_name)
+            except Exception as e:
+                print(f"Confirmation email error (non-blocking): {str(e)}")
+            
             messages.success(request, '✅ Account created! Your website request has been saved.')
             return redirect('dashboard')
         else:

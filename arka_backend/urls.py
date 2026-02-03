@@ -22,6 +22,7 @@ urlpatterns = [
     path('', project_views.landing, name='landing'),
     path('admin/', admin.site.urls),
     path('request-website/', project_views.request_website, name='request-website'),
+    path('contact/', project_views.contact, name='contact'),
     path('dashboard/', project_views.dashboard, name='dashboard'),
     # Payment integration removed - manual payment handling
     path('login/', project_views.login_view, name='login'),
