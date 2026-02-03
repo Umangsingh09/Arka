@@ -1,82 +1,141 @@
 {% extends 'base.html' %}
 
-{% block title %}Grow your business — Arka{% endblock %}
+{% block title %}Arka - Build Business-Focused Websites{% endblock %}
 
 {% block content %}
-  <section class="hero" style="background:linear-gradient(135deg,#667eea 0,#764ba2 100%);color:#fff;padding:80px 0;text-align:center">
-    <div class="container">
-      <h1 style="font-size:2.25rem;line-height:1.15;margin-bottom:16px">Grow your business with websites that solve real problems</h1>
-      <p style="font-size:1.05rem;color:rgba(255,255,255,0.9);max-width:800px;margin:0 auto 24px">Arka builds business-focused websites — not just pretty designs. We combine product thinking, measurable outcomes, and reliable engineering so your website becomes a growth channel.</p>
-      <p style="margin-top:18px"><a href="{% url 'request-website' %}" class="cta-button" style="background:#fff;color:#667eea;padding:12px 28px;border-radius:999px;font-weight:600;display:inline-block">Request a Website</a></p>
-    </div>
-  </section>
 
-  <section aria-labelledby="about-arka" style="padding:56px 0">
-    <div class="container">
-      <h2 id="about-arka" style="font-size:1.5rem;margin-bottom:12px">About Arka</h2>
-      <p style="color:var(--muted);max-width:900px">Arka is a small product-minded team that helps businesses move faster online. Anyone can make a website, but Arka focuses on solving real business problems using technology — from lead capture and automated workflows to conversion-focused pages.</p>
-    </div>
-  </section>
-
-  <section aria-labelledby="why-arka" style="background:#f7f8fb;padding:56px 0">
-    <div class="container">
-      <h2 id="why-arka" style="font-size:1.5rem;margin-bottom:24px">Why Choose Arka</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px">
-        <article class="card" style="background:#fff;padding:20px;border-radius:8px">
-          <h3 style="margin:0 0 8px">Business-first approach</h3>
-          <p style="margin:0;color:var(--muted)">We prioritise measurable outcomes — leads, conversions and retention — not just visuals.</p>
-        </article>
-        <article class="card" style="background:#fff;padding:20px;border-radius:8px">
-          <h3 style="margin:0 0 8px">Custom solutions</h3>
-          <p style="margin:0;color:var(--muted)">We build custom features where templates won't scale your business.</p>
-        </article>
-        <article class="card" style="background:#fff;padding:20px;border-radius:8px">
-          <h3 style="margin:0 0 8px">Scalable & maintainable</h3>
-          <p style="margin:0;color:var(--muted)">Clean code and simple infra make future changes painless.</p>
-        </article>
-        <article class="card" style="background:#fff;padding:20px;border-radius:8px">
-          <h3 style="margin:0 0 8px">Support beyond delivery</h3>
-          <p style="margin:0;color:var(--muted)">We offer handover and ongoing support to keep things running.</p>
-        </article>
+<!-- Hero Section -->
+<section class="relative min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 w-full">
+    <div class="max-w-3xl animate-on-scroll">
+      <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+        Grow your business with websites that solve real problems
+      </h1>
+      <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+        Arka builds business-focused websites that drive conversions, not just pretty designs. 
+        Get a custom website built for your growth in days, not weeks.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="{% url 'request-website' %}" class="btn-primary text-lg text-center">
+          Request Your Website →
+        </a>
+        <a href="#why-arka" class="btn-secondary text-lg text-center">
+          Learn More
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section aria-labelledby="stats" style="padding:48px 0">
-    <div class="container">
-      <h2 id="stats" style="font-size:1.25rem;margin-bottom:18px">Proof in numbers</h2>
-      <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between">
-        <div style="flex:1;min-width:160px;background:#fff;padding:18px;border-radius:8px;text-align:center">
-          <div style="font-size:1.6rem;font-weight:700">{{ total_projects }}</div>
-          <div style="color:var(--muted)">Total projects completed</div>
-        </div>
-        <div style="flex:1;min-width:160px;background:#fff;padding:18px;border-radius:8px;text-align:center">
-          <div style="font-size:1.6rem;font-weight:700">{{ active_projects }}</div>
-          <div style="color:var(--muted)">Active projects</div>
-        </div>
-        <div style="flex:1;min-width:160px;background:#fff;padding:18px;border-radius:8px;text-align:center">
-          <div style="font-size:1.6rem;font-weight:700">{{ happy_clients }}</div>
-          <div style="color:var(--muted)">Happy clients</div>
-        </div>
+<!-- About Section -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl animate-on-scroll">
+      <h2 class="section-title">About Arka</h2>
+      <p class="section-subtitle text-base md:text-lg">
+        Arka is a product-minded team that helps businesses move faster online. 
+        <strong>Anyone can make a website, but Arka focuses on solving real business problems</strong> — 
+        from lead capture and automation to conversion-focused pages that drive revenue.
+      </p>
+      <p class="text-gray-600 text-lg">
+        We combine strategic thinking, clean code, and measurable outcomes. Your website becomes 
+        a growth channel, not just a digital business card.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Arka Section -->
+<section id="why-arka" class="py-16 md:py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="section-title animate-on-scroll">Why Choose Arka</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="card animate-on-scroll">
+        <div class="text-4xl mb-4">💼</div>
+        <h3 class="text-xl font-bold mb-3 text-gray-900">Business-first</h3>
+        <p class="text-gray-600">We prioritize measurable outcomes — leads, conversions, and retention — not just visuals.</p>
+      </div>
+      <div class="card animate-on-scroll">
+        <div class="text-4xl mb-4">🛠️</div>
+        <h3 class="text-xl font-bold mb-3 text-gray-900">Custom solutions</h3>
+        <p class="text-gray-600">We build custom features where templates won't scale your business.</p>
+      </div>
+      <div class="card animate-on-scroll">
+        <div class="text-4xl mb-4">⚡</div>
+        <h3 class="text-xl font-bold mb-3 text-gray-900">Scalable & fast</h3>
+        <p class="text-gray-600">Clean code and simple infrastructure make future changes painless.</p>
+      </div>
+      <div class="card animate-on-scroll">
+        <div class="text-4xl mb-4">🤝</div>
+        <h3 class="text-xl font-bold mb-3 text-gray-900">Real support</h3>
+        <p class="text-gray-600">We offer handover and ongoing support to keep everything running smoothly.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section aria-labelledby="how-it-works" style="background:#f7f8fb;padding:56px 0">
-    <div class="container">
-      <h2 id="how-it-works" style="font-size:1.5rem;margin-bottom:20px">How it works</h2>
-      <ol style="max-width:900px;margin:0;padding-left:18px;color:var(--muted)">
-        <li style="margin-bottom:12px"><strong>Tell us about your business</strong> — Share goals, customers and the outcome you want.</li>
-        <li style="margin-bottom:12px"><strong>We design & build</strong> — We deliver a tested website focused on conversions and growth.</li>
-        <li style="margin-bottom:12px"><strong>Grow your business</strong> — Launch, measure and iterate to increase revenue.</li>
-      </ol>
+<!-- Stats Section -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="section-title animate-on-scroll text-center">Trusted by Growing Businesses</h2>
+    <div class="grid md:grid-cols-3 gap-8 mt-12">
+      <div class="text-center animate-on-scroll">
+        <div class="stat-number">{{ total_projects }}</div>
+        <p class="text-lg text-gray-600 mt-2">Projects Completed</p>
+      </div>
+      <div class="text-center animate-on-scroll">
+        <div class="stat-number">{{ active_projects }}</div>
+        <p class="text-lg text-gray-600 mt-2">Active Projects</p>
+      </div>
+      <div class="text-center animate-on-scroll">
+        <div class="stat-number">{{ happy_clients }}</div>
+        <p class="text-lg text-gray-600 mt-2">Happy Clients</p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section style="padding:48px 0;text-align:center">
-    <div class="container">
-      <a href="{% url 'request-website' %}" class="cta-button" style="background:var(--accent);color:#fff;padding:12px 28px;border-radius:999px;font-weight:600">Get Your Website</a>
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-16 md:py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="section-title animate-on-scroll">How It Works</h2>
+    <div class="grid md:grid-cols-3 gap-8 mt-12">
+      <div class="animate-on-scroll">
+        <div class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full text-xl font-bold mb-4">1</div>
+        <h3 class="text-xl font-bold mb-3 text-gray-900">Tell us about your business</h3>
+        <p class="text-gray-600">Share your goals, customers, and the specific outcome you want to achieve.</p>
+      </div>
+      <div class="animate-on-scroll">
+        <div class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full text-xl font-bold mb-4">2</div>
+        <h3 class="text-xl font-bold mb-3 text-gray-900">We design & build</h3>
+        <p class="text-gray-600">Our team delivers a tested, conversion-focused website in days.</p>
+      </div>
+      <div class="animate-on-scroll">
+        <div class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full text-xl font-bold mb-4">3</div>
+        <h3 class="text-xl font-bold mb-3 text-gray-900">Grow your business</h3>
+        <p class="text-gray-600">Launch, measure results, and iterate to increase revenue and leads.</p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section id="contact" class="py-16 md:py-24 bg-gradient-to-br from-blue-600 to-blue-700 text-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
+    <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to get started?</h2>
+    <p class="text-xl mb-8 text-blue-100">
+      Let's talk about your project and how Arka can help you grow.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="{% url 'request-website' %}" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-blue-50 transition-all duration-200 hover:shadow-lg hover:scale-105 inline-block">
+        Request a Website
+      </a>
+      <a href="mailto:contact@arka.com" class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold hover:bg-blue-600 transition-all duration-200 inline-block">
+        Email Us
+      </a>
+    </div>
+  </div>
+</section>
+
 {% endblock %}
 

@@ -3,42 +3,96 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Arka{% endblock %}</title>
-    <meta name="description" content="Arka - business focused websites">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>{% block title %}Arka - Business Websites{% endblock %}</title>
+    <meta name="description" content="Arka builds custom websites that solve real business problems. Fast, scalable, and conversion-focused.">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <style>
-      /* Minimal base styles — ready for Tailwind/Bootstrap later */
-      :root{--accent:#667eea;--accent-2:#764ba2;--muted:#666}
-      html,body{height:100%;margin:0;font-family:Segoe UI,system-ui,Arial,Helvetica,sans-serif;color:#222}
-      a{color:var(--accent);text-decoration:none}
-      .site-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 24px}
-      .nav-links a{margin-left:18px}
-      .container{max-width:1100px;margin:0 auto;padding:0 20px}
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      * { font-family: 'Inter', sans-serif; }
+      html { scroll-behavior: smooth; }
+      .fade-in { animation: fadeIn 0.6s ease-in; }
+      .slide-up { animation: slideUp 0.6s ease-out; }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+      .btn-primary { @apply px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-all duration-200 hover:shadow-lg hover:scale-105; }
+      .btn-primary:active { @apply scale-95; }
+      .btn-secondary { @apply px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-all duration-200; }
+      .card { @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 p-6; }
+      .nav-link { @apply text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium; }
+      .section-title { @apply text-3xl md:text-4xl font-bold text-gray-900 mb-4; }
+      .section-subtitle { @apply text-xl text-gray-600 mb-8 max-w-2xl; }
+      .stat-number { @apply text-4xl md:text-5xl font-bold text-blue-600; }
     </style>
     {% block head_extra %}{% endblock %}
   </head>
-  <body>
-    <header class="site-nav" role="banner">
-      <div class="container" style="display:flex;justify-content:space-between;align-items:center">
-        <div class="brand">
-          <a href="/" aria-label="Arka home" style="font-weight:700;font-size:1.1rem">🚀 Arka</a>
+  <body class="bg-white text-gray-900">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <a href="{% url 'landing' %}" class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+            🚀 Arka
+          </a>
+          <div class="hidden md:flex gap-8">
+            <a href="#why-arka" class="nav-link">Why Arka</a>
+            <a href="#how-it-works" class="nav-link">How It Works</a>
+            <a href="#contact" class="nav-link">Contact</a>
+          </div>
+          <div class="flex gap-4">
+            <a href="{% url 'login' %}" class="nav-link">Login</a>
+            <a href="{% url 'request-website' %}" class="btn-primary text-sm">Get Started</a>
+          </div>
         </div>
-        <nav class="nav-links" role="navigation" aria-label="Main navigation">
-          <a href="{% url 'request-website' %}">Request Website</a>
-          <a href="{% url 'login' %}">Login</a>
-        </nav>
       </div>
-    </header>
+    </nav>
 
-    <main role="main">{% block content %}{% endblock %}</main>
+    <!-- Main Content -->
+    <main role="main">
+      {% block content %}{% endblock %}
+    </main>
 
-    <footer style="background:#111;color:#fff;padding:40px 0;margin-top:60px">
-      <div class="container">
-        <p style="margin:0">© {{ now|date:"Y" }} Arka. Building websites that solve business problems.</p>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">Arka</h3>
+            <p class="text-gray-400">Building websites that solve business problems.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="{% url 'request-website' %}" class="hover:text-white transition-colors">Request Website</a></li>
+              <li><a href="{% url 'login' %}" class="hover:text-white transition-colors">Login</a></li>
+              <li><a href="{% url 'signup' %}" class="hover:text-white transition-colors">Sign Up</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Contact</h4>
+            <p class="text-gray-400">
+              <a href="mailto:contact@arka.com" class="hover:text-white transition-colors">contact@arka.com</a>
+            </p>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8">
+          <p class="text-center text-gray-400">© 2026 Arka. All rights reserved.</p>
+        </div>
       </div>
     </footer>
 
+    <!-- Scroll Animation Script -->
+    <script>
+      const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in', 'slide-up');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
     {% block scripts %}{% endblock %}
   </body>
 </html>
