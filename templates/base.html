@@ -5,43 +5,198 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Arka - Business Websites{% endblock %}</title>
     <meta name="description" content="Arka builds custom websites that solve real business problems. Fast, scalable, and conversion-focused.">
-    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <noscript>
+      <!-- Fallback if CDN fails -->
+      <link href="https://unpkg.com/tailwindcss@2/dist/tailwind.min.css" rel="stylesheet">
+    </noscript>
+    
+    <!-- Critical inline styles -->
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-      * { font-family: 'Inter', sans-serif; }
-      html { scroll-behavior: smooth; }
+      
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --gray-900: #111827;
+        --gray-700: #374151;
+        --gray-600: #4b5563;
+      }
+      
+      * { 
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+      
+      html { 
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        background: white;
+        color: var(--gray-900);
+        line-height: 1.6;
+      }
+      
+      /* Animations */
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
       .fade-in { animation: fadeIn 0.6s ease-in; }
       .slide-up { animation: slideUp 0.6s ease-out; }
-      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-      @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-      .btn-primary { @apply px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-all duration-200 hover:shadow-lg hover:scale-105; }
-      .btn-primary:active { @apply scale-95; }
-      .btn-secondary { @apply px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-all duration-200; }
-      .card { @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 p-6; }
-      .nav-link { @apply text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium; }
-      .section-title { @apply text-3xl md:text-4xl font-bold text-gray-900 mb-4; }
-      .section-subtitle { @apply text-xl text-gray-600 mb-8 max-w-2xl; }
-      .stat-number { @apply text-4xl md:text-5xl font-bold text-blue-600; }
+      
+      /* Button styles */
+      .btn-primary {
+        padding: 12px 24px;
+        background: var(--primary);
+        color: white;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 0.95rem;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.2s ease;
+      }
+      
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+      }
+      
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+      
+      .btn-secondary {
+        padding: 12px 24px;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        background: transparent;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.2s ease;
+      }
+      
+      .btn-secondary:hover {
+        background: rgba(37, 99, 235, 0.05);
+      }
+      
+      /* Navigation */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: white;
+        border-bottom: 1px solid #f3f4f6;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
+      
+      .nav-container {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 64px;
+      }
+      
+      .nav-brand {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      
+      .nav-brand:hover {
+        color: var(--primary-dark);
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+      
+      .nav-link {
+        color: var(--gray-700);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      
+      .nav-link:hover {
+        color: var(--primary);
+      }
+      
+      /* Cards */
+      .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        padding: 1.5rem;
+        transition: all 0.2s;
+      }
+      
+      .card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+      
+      /* Sections */
+      .section-title {
+        font-size: clamp(1.875rem, 5vw, 2.25rem);
+        font-weight: 700;
+        color: var(--gray-900);
+        margin-bottom: 1rem;
+      }
+      
+      /* Footer */
+      footer {
+        background: var(--gray-900);
+        color: white;
+        padding: 3rem 1rem;
+        margin-top: 5rem;
+      }
+      
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links { gap: 1rem; }
+        .section-title { font-size: 1.875rem; }
+      }
     </style>
     {% block head_extra %}{% endblock %}
   </head>
   <body class="bg-white text-gray-900">
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-          <a href="{% url 'landing' %}" class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
-            🚀 Arka
-          </a>
-          <div class="hidden md:flex gap-8">
-            <a href="#why-arka" class="nav-link">Why Arka</a>
-            <a href="#how-it-works" class="nav-link">How It Works</a>
-            <a href="#contact" class="nav-link">Contact</a>
-          </div>
-          <div class="flex gap-4">
-            <a href="{% url 'login' %}" class="nav-link">Login</a>
-            <a href="{% url 'request-website' %}" class="btn-primary text-sm">Get Started</a>
-          </div>
+    <nav role="navigation" aria-label="Main">
+      <div class="nav-container">
+        <a href="{% url 'landing' %}" class="nav-brand" aria-label="Arka Home">
+          🚀 Arka
+        </a>
+        <div class="nav-links hidden md:flex">
+          <a href="#why-arka" class="nav-link">Why Arka</a>
+          <a href="#how-it-works" class="nav-link">How It Works</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-links">
+          <a href="{% url 'login' %}" class="nav-link">Login</a>
+          <a href="{% url 'request-website' %}" class="btn-primary" style="margin: 0; padding: 10px 20px; font-size: 0.9rem;">Get Started</a>
         </div>
       </div>
     </nav>
@@ -52,46 +207,55 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white mt-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="grid md:grid-cols-3 gap-8 mb-8">
+    <footer>
+      <div style="max-width: 80rem; margin: 0 auto; padding: 0 1rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
           <div>
-            <h3 class="text-xl font-bold mb-4">Arka</h3>
-            <p class="text-gray-400">Building websites that solve business problems.</p>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Arka</h3>
+            <p style="color: #d1d5db;">Building websites that solve business problems.</p>
           </div>
           <div>
-            <h4 class="font-semibold mb-4">Quick Links</h4>
-            <ul class="space-y-2 text-gray-400">
-              <li><a href="{% url 'request-website' %}" class="hover:text-white transition-colors">Request Website</a></li>
-              <li><a href="{% url 'login' %}" class="hover:text-white transition-colors">Login</a></li>
-              <li><a href="{% url 'signup' %}" class="hover:text-white transition-colors">Sign Up</a></li>
+            <h4 style="font-weight: 600; margin-bottom: 1rem;">Quick Links</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; color: #d1d5db;">
+              <li style="margin-bottom: 0.5rem;"><a href="{% url 'request-website' %}" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#d1d5db'">Request Website</a></li>
+              <li style="margin-bottom: 0.5rem;"><a href="{% url 'login' %}" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#d1d5db'">Login</a></li>
+              <li style="margin-bottom: 0.5rem;"><a href="{% url 'signup' %}" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#d1d5db'">Sign Up</a></li>
             </ul>
           </div>
           <div>
-            <h4 class="font-semibold mb-4">Contact</h4>
-            <p class="text-gray-400">
-              <a href="mailto:contact@arka.com" class="hover:text-white transition-colors">contact@arka.com</a>
+            <h4 style="font-weight: 600; margin-bottom: 1rem;">Contact</h4>
+            <p style="color: #d1d5db;">
+              <a href="mailto:contact@arka.com" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#d1d5db'">contact@arka.com</a>
             </p>
           </div>
         </div>
-        <div class="border-t border-gray-800 pt-8">
-          <p class="text-center text-gray-400">© 2026 Arka. All rights reserved.</p>
+        <div style="border-top: 1px solid #374151; padding-top: 2rem;">
+          <p style="text-align: center; color: #9ca3af; margin: 0;">© 2026 Arka. All rights reserved.</p>
         </div>
       </div>
     </footer>
 
     <!-- Scroll Animation Script -->
     <script>
-      const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in', 'slide-up');
-            observer.unobserve(entry.target);
-          }
+      (function() {
+        const observerOptions = { 
+          threshold: 0.1, 
+          rootMargin: '0px 0px -100px 0px' 
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('fade-in', 'slide-up');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+        
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+          observer.observe(el);
         });
-      }, observerOptions);
-      document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+      })();
     </script>
     {% block scripts %}{% endblock %}
   </body>

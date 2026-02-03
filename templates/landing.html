@@ -5,21 +5,21 @@
 {% block content %}
 
 <!-- Hero Section -->
-<section class="relative min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 w-full">
-    <div class="max-w-3xl animate-on-scroll">
-      <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+<section style="background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); padding: 80px 20px; display: flex; align-items: center; min-height: 500px;">
+  <div style="max-width: 80rem; margin: 0 auto; width: 100%;">
+    <div style="max-width: 50rem;" class="animate-on-scroll">
+      <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: #111827; margin-bottom: 24px; line-height: 1.2;">
         Grow your business with websites that solve real problems
       </h1>
-      <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+      <p style="font-size: 1.1rem; color: #4b5563; margin-bottom: 32px; line-height: 1.8; max-width: 600px;">
         Arka builds business-focused websites that drive conversions, not just pretty designs. 
         Get a custom website built for your growth in days, not weeks.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a href="{% url 'request-website' %}" class="btn-primary text-lg text-center">
+      <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+        <a href="{% url 'request-website' %}" class="btn-primary" style="display: inline-block;">
           Request Your Website →
         </a>
-        <a href="#why-arka" class="btn-secondary text-lg text-center">
+        <a href="#why-arka" class="btn-secondary" style="display: inline-block;">
           Learn More
         </a>
       </div>
@@ -28,16 +28,16 @@
 </section>
 
 <!-- About Section -->
-<section class="py-16 md:py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl animate-on-scroll">
+<section style="padding: 80px 20px; background: white;">
+  <div style="max-width: 80rem; margin: 0 auto;">
+    <div style="max-width: 50rem;" class="animate-on-scroll">
       <h2 class="section-title">About Arka</h2>
-      <p class="section-subtitle text-base md:text-lg">
+      <p style="font-size: 1rem; color: #4b5563; line-height: 1.8; margin-bottom: 20px;">
         Arka is a product-minded team that helps businesses move faster online. 
         <strong>Anyone can make a website, but Arka focuses on solving real business problems</strong> — 
         from lead capture and automation to conversion-focused pages that drive revenue.
       </p>
-      <p class="text-gray-600 text-lg">
+      <p style="font-size: 1rem; color: #4b5563; line-height: 1.8;">
         We combine strategic thinking, clean code, and measurable outcomes. Your website becomes 
         a growth channel, not just a digital business card.
       </p>
@@ -46,91 +46,91 @@
 </section>
 
 <!-- Why Choose Arka Section -->
-<section id="why-arka" class="py-16 md:py-24 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="why-arka" style="padding: 80px 20px; background: #f9fafb;">
+  <div style="max-width: 80rem; margin: 0 auto;">
     <h2 class="section-title animate-on-scroll">Why Choose Arka</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="card animate-on-scroll">
-        <div class="text-4xl mb-4">💼</div>
-        <h3 class="text-xl font-bold mb-3 text-gray-900">Business-first</h3>
-        <p class="text-gray-600">We prioritize measurable outcomes — leads, conversions, and retention — not just visuals.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 48px;">
+      <div class="card animate-on-scroll" style="text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 16px;">💼</div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #111827;">Business-first</h3>
+        <p style="color: #4b5563;">We prioritize measurable outcomes — leads, conversions, and retention — not just visuals.</p>
       </div>
-      <div class="card animate-on-scroll">
-        <div class="text-4xl mb-4">🛠️</div>
-        <h3 class="text-xl font-bold mb-3 text-gray-900">Custom solutions</h3>
-        <p class="text-gray-600">We build custom features where templates won't scale your business.</p>
+      <div class="card animate-on-scroll" style="text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 16px;">🛠️</div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #111827;">Custom solutions</h3>
+        <p style="color: #4b5563;">We build custom features where templates won't scale your business.</p>
       </div>
-      <div class="card animate-on-scroll">
-        <div class="text-4xl mb-4">⚡</div>
-        <h3 class="text-xl font-bold mb-3 text-gray-900">Scalable & fast</h3>
-        <p class="text-gray-600">Clean code and simple infrastructure make future changes painless.</p>
+      <div class="card animate-on-scroll" style="text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 16px;">⚡</div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #111827;">Scalable & fast</h3>
+        <p style="color: #4b5563;">Clean code and simple infrastructure make future changes painless.</p>
       </div>
-      <div class="card animate-on-scroll">
-        <div class="text-4xl mb-4">🤝</div>
-        <h3 class="text-xl font-bold mb-3 text-gray-900">Real support</h3>
-        <p class="text-gray-600">We offer handover and ongoing support to keep everything running smoothly.</p>
+      <div class="card animate-on-scroll" style="text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 16px;">🤝</div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #111827;">Real support</h3>
+        <p style="color: #4b5563;">We offer handover and ongoing support to keep everything running smoothly.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Stats Section -->
-<section class="py-16 md:py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="section-title animate-on-scroll text-center">Trusted by Growing Businesses</h2>
-    <div class="grid md:grid-cols-3 gap-8 mt-12">
-      <div class="text-center animate-on-scroll">
-        <div class="stat-number">{{ total_projects }}</div>
-        <p class="text-lg text-gray-600 mt-2">Projects Completed</p>
+<section style="padding: 80px 20px; background: white;">
+  <div style="max-width: 80rem; margin: 0 auto;">
+    <h2 class="section-title animate-on-scroll" style="text-align: center;">Trusted by Growing Businesses</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-top: 48px;">
+      <div style="text-align: center; padding: 20px;" class="animate-on-scroll">
+        <div style="font-size: 2.75rem; font-weight: 700; color: #2563eb;">{{ total_projects }}</div>
+        <p style="font-size: 1rem; color: #4b5563; margin-top: 12px;">Projects Completed</p>
       </div>
-      <div class="text-center animate-on-scroll">
-        <div class="stat-number">{{ active_projects }}</div>
-        <p class="text-lg text-gray-600 mt-2">Active Projects</p>
+      <div style="text-align: center; padding: 20px;" class="animate-on-scroll">
+        <div style="font-size: 2.75rem; font-weight: 700; color: #2563eb;">{{ active_projects }}</div>
+        <p style="font-size: 1rem; color: #4b5563; margin-top: 12px;">Active Projects</p>
       </div>
-      <div class="text-center animate-on-scroll">
-        <div class="stat-number">{{ happy_clients }}</div>
-        <p class="text-lg text-gray-600 mt-2">Happy Clients</p>
+      <div style="text-align: center; padding: 20px;" class="animate-on-scroll">
+        <div style="font-size: 2.75rem; font-weight: 700; color: #2563eb;">{{ happy_clients }}</div>
+        <p style="font-size: 1rem; color: #4b5563; margin-top: 12px;">Happy Clients</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- How It Works Section -->
-<section id="how-it-works" class="py-16 md:py-24 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="how-it-works" style="padding: 80px 20px; background: #f9fafb;">
+  <div style="max-width: 80rem; margin: 0 auto;">
     <h2 class="section-title animate-on-scroll">How It Works</h2>
-    <div class="grid md:grid-cols-3 gap-8 mt-12">
-      <div class="animate-on-scroll">
-        <div class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full text-xl font-bold mb-4">1</div>
-        <h3 class="text-xl font-bold mb-3 text-gray-900">Tell us about your business</h3>
-        <p class="text-gray-600">Share your goals, customers, and the specific outcome you want to achieve.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-top: 48px;">
+      <div style="padding: 20px;" class="animate-on-scroll">
+        <div style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #2563eb; color: white; border-radius: 50%; font-weight: 700; font-size: 1.25rem; margin-bottom: 16px;">1</div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #111827;">Tell us about your business</h3>
+        <p style="color: #4b5563;">Share your goals, customers, and the specific outcome you want to achieve.</p>
       </div>
-      <div class="animate-on-scroll">
-        <div class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full text-xl font-bold mb-4">2</div>
-        <h3 class="text-xl font-bold mb-3 text-gray-900">We design & build</h3>
-        <p class="text-gray-600">Our team delivers a tested, conversion-focused website in days.</p>
+      <div style="padding: 20px;" class="animate-on-scroll">
+        <div style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #2563eb; color: white; border-radius: 50%; font-weight: 700; font-size: 1.25rem; margin-bottom: 16px;">2</div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #111827;">We design & build</h3>
+        <p style="color: #4b5563;">Our team delivers a tested, conversion-focused website in days.</p>
       </div>
-      <div class="animate-on-scroll">
-        <div class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full text-xl font-bold mb-4">3</div>
-        <h3 class="text-xl font-bold mb-3 text-gray-900">Grow your business</h3>
-        <p class="text-gray-600">Launch, measure results, and iterate to increase revenue and leads.</p>
+      <div style="padding: 20px;" class="animate-on-scroll">
+        <div style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #2563eb; color: white; border-radius: 50%; font-weight: 700; font-size: 1.25rem; margin-bottom: 16px;">3</div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #111827;">Grow your business</h3>
+        <p style="color: #4b5563;">Launch, measure results, and iterate to increase revenue and leads.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CTA Section -->
-<section id="contact" class="py-16 md:py-24 bg-gradient-to-br from-blue-600 to-blue-700 text-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
-    <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to get started?</h2>
-    <p class="text-xl mb-8 text-blue-100">
+<section id="contact" style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 80px 20px;">
+  <div style="max-width: 56rem; margin: 0 auto; text-align: center;" class="animate-on-scroll">
+    <h2 style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 24px;">Ready to get started?</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 32px; opacity: 0.95;">
       Let's talk about your project and how Arka can help you grow.
     </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="{% url 'request-website' %}" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-blue-50 transition-all duration-200 hover:shadow-lg hover:scale-105 inline-block">
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+      <a href="{% url 'request-website' %}" style="background: white; color: #2563eb; padding: 14px 32px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; transition: all 0.2s; border: none;" onmouseover="this.style.boxShadow='0 10px 25px rgba(0,0,0,0.2)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
         Request a Website
       </a>
-      <a href="mailto:contact@arka.com" class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold hover:bg-blue-600 transition-all duration-200 inline-block">
+      <a href="mailto:contact@arka.com" style="border: 2px solid white; color: white; padding: 12px 30px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; background: transparent; transition: all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
         Email Us
       </a>
     </div>
