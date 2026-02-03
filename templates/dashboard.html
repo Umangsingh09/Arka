@@ -365,25 +365,17 @@
                                     </div>
                                 {% endif %}
                                 
-                                <!-- Payment Section -->
-                                <div style="margin-top: 15px; display: flex; gap: 10px; align-items: center;">
-                                    {% if request.payment %}
-                                        {% if request.payment.status == 'pending' %}
-                                            <a href="{% url 'payment' request.id %}" class="btn btn-primary btn-sm" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
-                                                💳 Proceed with Payment
-                                            </a>
-                                            <span style="font-size: 0.9em; color: #666;">Amount: ₹{{ request.payment.amount|floatformat:0 }}</span>
-                                        {% elif request.payment.status == 'completed' %}
-                                            <span class="badge bg-success">✅ Payment Complete</span>
-                                            <span style="font-size: 0.9em; color: #28A745;">Paid: ₹{{ request.payment.amount|floatformat:0 }}</span>
-                                        {% else %}
-                                            <span class="badge bg-warning">⏳ Payment {{ request.payment.get_payment_status_display }}</span>
-                                        {% endif %}
-                                    {% else %}
-                                        <a href="{% url 'payment' request.id %}" class="btn btn-primary btn-sm" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
-                                            💳 Proceed with Payment
-                                        </a>
-                                    {% endif %}
+                                <!-- Manual Payment Info -->
+                                <div style="margin-top: 15px;">
+                                    <div style="background: #fff3cd; border: 1px solid #ffeeba; padding: 12px; border-radius: 6px; max-width: 640px;">
+                                        💳 <strong>Payment details will be shared after discussion via WhatsApp or phone.</strong>
+                                        <div style="margin-top:8px; color:#555; font-size:0.95em;">
+                                            <div><strong>Manual payment status:</strong> {{ request.payment_status|default:'Not Discussed' }}</div>
+                                            {% if request.payment_note %}
+                                                <div style="margin-top:6px;"><strong>Note:</strong> {{ request.payment_note }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div style="margin-left: 20px;">

@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-c7=f@6ix@37_bosvln-8j@ijsk+f)45-ejl129%2py=6r-f!m+')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
 
@@ -143,10 +143,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Development
 # EMAIL_HOST_PASSWORD = 'your-app-password'
 # DEFAULT_FROM_EMAIL = 'your-email@gmail.com'
 
-# Razorpay Configuration
-# Get your keys from: https://dashboard.razorpay.com/#/app/keys
-RAZORPAY_KEY_ID = config('RAZORPAY_KEY_ID', default='rzp_test_YOUR_KEY_ID')
-RAZORPAY_KEY_SECRET = config('RAZORPAY_KEY_SECRET', default='rzp_test_YOUR_KEY_SECRET')
+# Payment gateway keys removed — using manual payment workflow
 
 # Static files configuration
 STATIC_URL = '/static/'

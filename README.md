@@ -9,7 +9,7 @@ A Django-based web application that helps clients request and track custom websi
 - 🔐 User authentication & dashboard
 - 📞 Admin-to-client communication with status updates
 - 📧 Email notifications
-- 💳 Payment integration (Razorpay ready)
+- 💳 Manual payment workflow (admin-managed)
 - 🎨 Beautiful, responsive UI with Bootstrap
 
 ## Quick Start
@@ -61,17 +61,12 @@ arka_backend/
 
 ## Key Models
 
+
 ### WebsiteRequest
 - business_name, email, description
 - website_type, budget
 - Status tracking with admin notes
-- Connected to Payment model
-
-### Payment
-- OneToOne relationship with WebsiteRequest
-- Razorpay integration fields
-- Status tracking (pending, processing, completed, failed, refunded)
-- Invoice & receipt management
+- Admin-managed payment fields (`payment_status`, `payment_note`) for manual invoicing
 
 ### StatusUpdate
 - Tracks all status changes
@@ -96,29 +91,20 @@ arka_backend/
    - Click "Create Web Service"
 
 3. **Set Environment Variables on Render**
-   - Go to Dashboard → Your Service → Environment
-   - Add the following variables:
-     - `SECRET_KEY`: Generate one using `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"`
-     - `DEBUG`: `false`
-     - `ALLOWED_HOSTS`: `your-app-name.onrender.com`
-     - `RAZORPAY_KEY_ID`: Your Razorpay test key
-     - `RAZORPAY_KEY_SECRET`: Your Razorpay test secret
+    - Go to Dashboard → Your Service → Environment
+    - Add the following variables:
+       - `SECRET_KEY`: Generate one using `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"`
+       - `DEBUG`: `false`
+       - `ALLOWED_HOSTS`: `your-app-name.onrender.com`
 
 4. **Create Superuser on Render**
    ```bash
    render exec django python manage.py createsuperuser
    ```
 
-## Payment Integration
+## Payments
 
-### Test Mode (Development)
-- Get keys from [Razorpay Dashboard](https://dashboard.razorpay.com/#/app/keys)
-- Use test keys starting with `rzp_test_`
-- Test card: `4111 1111 1111 1111`
-
-### Live Mode (Production)
-- Switch to live keys starting with `rzp_live_`
-- Razorpay will verify your website details
+Automated payment gateway integration is currently disabled. The admin can record payment status and notes on each request; the team will provide invoice and manual payment instructions to clients.
 
 ## Environment Variables
 
@@ -127,8 +113,6 @@ Create a `.env` file locally:
 SECRET_KEY=your-secret-key
 DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1
-RAZORPAY_KEY_ID=rzp_test_xxx
-RAZORPAY_KEY_SECRET=rzp_test_xxx
 ```
 
 ## URLs
@@ -139,8 +123,7 @@ RAZORPAY_KEY_SECRET=rzp_test_xxx
 - `/signup/` - User signup
 - `/dashboard/` - User dashboard
 - `/admin/` - Admin panel
-- `/payment/<id>/` - Payment page
-- `/payment/callback/` - Razorpay webhook
+-- (Automated payment URLs removed) Use the dashboard and admin comments for manual payment instructions.
 
 ## Support
 

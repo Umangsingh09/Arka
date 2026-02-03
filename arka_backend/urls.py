@@ -23,9 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('request-website/', project_views.request_website, name='request-website'),
     path('dashboard/', project_views.dashboard, name='dashboard'),
-    path('payment/<int:request_id>/', project_views.payment_page, name='payment'),
-    path('payment/callback/', project_views.payment_callback, name='payment_callback'),
-    path('payment/success/<int:request_id>/', project_views.payment_success, name='payment_success'),
+    # Payment integration removed - manual payment handling
     path('login/', project_views.login_view, name='login'),
     path('signup/', project_views.signup_view, name='signup'),
     path('logout/', project_views.logout_view, name='logout'),

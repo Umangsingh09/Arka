@@ -3,17 +3,23 @@ from django.views.decorators.http import require_http_methods
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import json
-import uuid
 from .forms import WebsiteRequestForm
-from .models import WebsiteRequest, Payment
-from django.conf import settings
+from .models import WebsiteRequest
 
 
 def landing(request):
     """Landing page for Arka"""
-    return render(request, 'landing.html')
+    # Dynamic stats
+    total_projects = WebsiteRequest.objects.count()
+    active_projects = WebsiteRequest.objects.exclude(status='completed').count()
+    happy_clients = WebsiteRequest.objects.filter(status='completed').count()
+
+    context = {
+        'total_projects': total_projects,
+        'active_projects': active_projects,
+        'happy_clients': happy_clients,
+    }
+    return render(request, 'landing.html', context)
 
 
 @require_http_methods(["GET", "POST"])
@@ -59,104 +65,6 @@ def dashboard(request):
     }
     return render(request, 'dashboard.html', context)
 
-
-@login_required(login_url='login')
-def payment_page(request, request_id):
-    """Handle payment processing page"""
-    website_request = get_object_or_404(WebsiteRequest, id=request_id, user=request.user)
-    
-    # Check if payment already exists
-    payment = Payment.objects.filter(request=website_request).first()
-    
-    if not payment:
-        # Estimate payment based on budget or default
-        amount = get_payment_amount(website_request)
-        payment = Payment.objects.create(
-            request=website_request,
-            amount=amount,
-            invoice_number=f"INV-{uuid.uuid4().hex[:8].upper()}"
-        )
-    
-    context = {
-        'payment': payment,
-        'website_request': website_request,
-        'razorpay_key': settings.RAZORPAY_KEY_ID,
-    }
-    return render(request, 'payment.html', context)
-
-
-def get_payment_amount(website_request):
-    """Determine payment amount based on budget or website type"""
-    budget_map = {
-        '0-5000': 5000,
-        '5000-10000': 7500,
-        '10000-25000': 15000,
-        '25000-50000': 35000,
-        '50000+': 50000,
-    }
-    
-    if website_request.budget and website_request.budget in budget_map:
-        return budget_map[website_request.budget]
-    
-    # Default pricing by type
-    type_pricing = {
-        'landing': 5000,
-        'blog': 10000,
-        'portfolio': 12000,
-        'business': 20000,
-        'ecommerce': 50000,
-        'saas': 100000,
-    }
-    
-    return type_pricing.get(website_request.website_type, 25000)
-
-
-@csrf_exempt
-def payment_callback(request):
-    """Handle Razorpay payment callback"""
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            payment_id = data.get('razorpay_payment_id')
-            order_id = data.get('razorpay_order_id')
-            signature = data.get('razorpay_signature')
-            request_id = data.get('request_id')
-            
-            # Find payment
-            payment = get_object_or_404(Payment, request_id=request_id)
-            
-            # In production: verify signature
-            # For now: update payment status
-            payment.razorpay_payment_id = payment_id
-            payment.razorpay_order_id = order_id
-            payment.razorpay_signature = signature
-            payment.status = 'completed'
-            payment.paid_at = __import__('django.utils.timezone', fromlist=['now']).now()
-            payment.save()
-            
-            # Update request status
-            payment.request.status = 'contacted'
-            payment.request.admin_notes = f"Payment received: ₹{payment.amount}. Processing request..."
-            payment.request.save()
-            
-            return JsonResponse({'status': 'success'})
-        except Exception as e:
-            return JsonResponse({'status': 'failed', 'error': str(e)}, status=400)
-    
-    return JsonResponse({'status': 'invalid'}, status=405)
-
-
-@login_required(login_url='login')
-def payment_success(request, request_id):
-    """Payment success page"""
-    website_request = get_object_or_404(WebsiteRequest, id=request_id, user=request.user)
-    payment = get_object_or_404(Payment, request=website_request)
-    
-    context = {
-        'payment': payment,
-        'website_request': website_request,
-    }
-    return render(request, 'payment_success.html', context)
 
 
 def login_view(request):

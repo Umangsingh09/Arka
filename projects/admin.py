@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
-from .models import WebsiteRequest, StatusUpdate, Payment
+from .models import WebsiteRequest, StatusUpdate
 
 
 @admin.register(StatusUpdate)
@@ -21,7 +21,7 @@ class StatusUpdateAdmin(admin.ModelAdmin):
 
 @admin.register(WebsiteRequest)
 class WebsiteRequestAdmin(admin.ModelAdmin):
-    list_display = ['business_name', 'email', 'website_type', 'status_badge', 'created_at', 'user_info']
+    list_display = ['business_name', 'email', 'website_type', 'status_badge', 'payment_status_display', 'created_at', 'user_info']
     list_filter = ['status', 'website_type', 'created_at']
     search_fields = ['business_name', 'email', 'description']
     readonly_fields = ['email', 'created_at', 'updated_at', 'status_updated_at']
@@ -34,8 +34,8 @@ class WebsiteRequestAdmin(admin.ModelAdmin):
             'fields': ('website_type', 'description', 'budget')
         }),
         ('Status & Communication', {
-            'fields': ('status', 'admin_notes', 'status_updated_at', 'notified_user'),
-            'description': 'Update status and add notes to communicate with client'
+            'fields': ('status', 'admin_notes', 'status_updated_at', 'notified_user', 'payment_status', 'payment_note'),
+            'description': 'Update status, add notes, and manage manual payment info'
         }),
         ('Metadata', {
             'fields': ('created_at', 'updated_at'),
@@ -72,6 +72,22 @@ class WebsiteRequestAdmin(admin.ModelAdmin):
             return format_html('<a href="/admin/accounts/user/{}/change/">{}</a>', obj.user.id, obj.user.username)
         return '—'
     user_info.short_description = 'User'
+
+    def payment_status_display(self, obj):
+        colors = {
+            'not_discussed': '#6C757D',
+            'pending': '#FFC107',
+            'paid': '#28A745',
+        }
+        labels = {
+            'not_discussed': 'Not Discussed',
+            'pending': 'Pending',
+            'paid': 'Paid',
+        }
+        color = colors.get(obj.payment_status, '#6C757D')
+        label = labels.get(obj.payment_status, obj.payment_status)
+        return format_html('<span style="background-color: {}; color: white; padding: 3px 8px; border-radius: 3px; font-weight: bold;">{}</span>', color, label)
+    payment_status_display.short_description = 'Payment'
     
     def save_model(self, request, obj, form, change):
         """Save model and track status changes"""
@@ -141,66 +157,4 @@ Arka Team ✨
             print(f"Email notification error: {e}")
 
 
-@admin.register(Payment)
-class PaymentAdmin(admin.ModelAdmin):
-    list_display = ['request_info', 'amount_display', 'status_badge', 'paid_at', 'created_at']
-    list_filter = ['status', 'created_at', 'paid_at']
-    search_fields = ['request__business_name', 'invoice_number', 'razorpay_payment_id']
-    readonly_fields = ['razorpay_payment_id', 'razorpay_order_id', 'razorpay_signature', 'created_at', 'paid_at']
-    
-    fieldsets = (
-        ('Payment Information', {
-            'fields': ('request', 'amount', 'currency', 'status')
-        }),
-        ('Invoice & Receipt', {
-            'fields': ('invoice_number', 'receipt_url')
-        }),
-        ('Razorpay Details', {
-            'fields': ('razorpay_order_id', 'razorpay_payment_id', 'razorpay_signature'),
-            'classes': ('collapse',)
-        }),
-        ('Timestamps', {
-            'fields': ('created_at', 'paid_at'),
-            'classes': ('collapse',)
-        }),
-    )
-    
-    def request_info(self, obj):
-        """Display request business name as link"""
-        return format_html(
-            '<a href="/admin/projects/websiterequest/{}/change/">{}</a>',
-            obj.request.id,
-            obj.request.business_name
-        )
-    request_info.short_description = 'Request'
-    
-    def amount_display(self, obj):
-        """Display amount with currency"""
-        return f"₹{obj.amount:,.2f}"
-    amount_display.short_description = 'Amount'
-    
-    def status_badge(self, obj):
-        """Display payment status with color coding"""
-        colors = {
-            'pending': '#FFC107',
-            'processing': '#0D6EFD',
-            'completed': '#28A745',
-            'failed': '#DC3545',
-            'refunded': '#6C757D',
-        }
-        emoji = {
-            'pending': '⏳',
-            'processing': '🔄',
-            'completed': '✅',
-            'failed': '❌',
-            'refunded': '↩️',
-        }
-        color = colors.get(obj.status, '#6C757D')
-        icon = emoji.get(obj.status, '•')
-        return format_html(
-            '<span style="background-color: {}; color: white; padding: 3px 10px; border-radius: 3px; font-weight: bold;">{} {}</span>',
-            color,
-            icon,
-            obj.get_payment_status_display()
-        )
-    status_badge.short_description = 'Status'
+

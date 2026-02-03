@@ -21,12 +21,11 @@ STATUS_CHOICES = [
     ('completed', '✅ Completed'),
 ]
 
+# Simplified payment statuses for manual handling
 PAYMENT_STATUS_CHOICES = [
-    ('pending', '⏳ Pending'),
-    ('processing', '🔄 Processing'),
-    ('completed', '✅ Completed'),
-    ('failed', '❌ Failed'),
-    ('refunded', '↩️ Refunded'),
+    ('not_discussed', 'Not Discussed'),
+    ('pending', 'Pending'),
+    ('paid', 'Paid'),
 ]
 
 
@@ -67,6 +66,14 @@ class WebsiteRequest(models.Model):
     )
     status_updated_at = models.DateTimeField(null=True, blank=True)
     notified_user = models.BooleanField(default=False, help_text="Whether user was notified about status change")
+    # Manual payment handling (no gateway integration)
+    payment_status = models.CharField(
+        max_length=20,
+        choices=PAYMENT_STATUS_CHOICES,
+        default='not_discussed',
+        help_text='Manual payment status managed by admin'
+    )
+    payment_note = models.TextField(blank=True, null=True, help_text='Notes about manual payment (e.g. "Paid via GPay on DD/MM")')
     
     class Meta:
         ordering = ['-created_at']
@@ -87,52 +94,7 @@ class WebsiteRequest(models.Model):
         return emojis.get(self.status, '•')
 
 
-class Payment(models.Model):
-    """Model to track payments for website requests"""
-    
-    request = models.OneToOneField(WebsiteRequest, on_delete=models.CASCADE, related_name='payment')
-    amount = models.DecimalField(max_digits=10, decimal_places=2, help_text="Payment amount in INR")
-    currency = models.CharField(max_length=3, default='INR')
-    
-    # Payment tracking
-    status = models.CharField(
-        max_length=20,
-        choices=PAYMENT_STATUS_CHOICES,
-        default='pending'
-    )
-    
-    # Razorpay integration
-    razorpay_order_id = models.CharField(max_length=100, blank=True, null=True)
-    razorpay_payment_id = models.CharField(max_length=100, blank=True, null=True)
-    razorpay_signature = models.CharField(max_length=255, blank=True, null=True)
-    
-    # Metadata
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    paid_at = models.DateTimeField(null=True, blank=True)
-    
-    # Receipt
-    receipt_url = models.URLField(blank=True, null=True)
-    invoice_number = models.CharField(max_length=50, unique=True, blank=True, null=True)
-    
-    class Meta:
-        ordering = ['-created_at']
-        verbose_name = 'Payment'
-        verbose_name_plural = 'Payments'
-    
-    def __str__(self):
-        return f"Payment for {self.request.business_name} - ₹{self.amount}"
-    
-    def get_payment_status_display(self):
-        """Return emoji for payment status"""
-        statuses = {
-            'pending': '⏳ Pending',
-            'processing': '🔄 Processing',
-            'completed': '✅ Completed',
-            'failed': '❌ Failed',
-            'refunded': '↩️ Refunded',
-        }
-        return statuses.get(self.status, self.get_status_display())
+# Payment model removed - manual payments are tracked via WebsiteRequest.payment_status and payment_note
 
 
 class StatusUpdate(models.Model):

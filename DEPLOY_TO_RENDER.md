@@ -4,7 +4,7 @@
 
 1. Go to [github.com/new](https://github.com/new)
 2. Repository name: `arka`
-3. Description: "Custom website builder with Razorpay payments"
+3. Description: "Custom website builder (manual payment workflow)"
 4. Click "Create repository"
 
 ## Step 2: Push Your Code to GitHub
@@ -35,8 +35,6 @@ git push -u origin main
 DEBUG=false
 ALLOWED_HOSTS=arka.onrender.com
 SECRET_KEY=<generate-a-new-one>
-RAZORPAY_KEY_ID=rzp_test_YOUR_KEY_ID
-RAZORPAY_KEY_SECRET=rzp_test_YOUR_KEY_SECRET
 ```
 
 To generate `SECRET_KEY`, run in terminal:
@@ -61,14 +59,7 @@ python manage.py createsuperuser
 3. Enter username, email, password
 4. Admin panel: `https://your-app-name.onrender.com/admin/`
 
-## Step 5: Get Razorpay Test Keys
-
-1. Go to [https://dashboard.razorpay.com/#/app/keys](https://dashboard.razorpay.com/#/app/keys)
-2. Copy your **Test Key ID** and **Test Key Secret**
-3. Update Render environment variables:
-   - `RAZORPAY_KEY_ID` = Your test key ID
-   - `RAZORPAY_KEY_SECRET` = Your test key secret
-4. Redeploy (Render auto-deploys on env changes)
+<!-- Automated payment keys are no longer required. Manual payment workflow managed via admin. -->
 
 ## Step 6: Test Your Live App
 

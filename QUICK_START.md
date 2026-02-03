@@ -5,8 +5,8 @@
 ✅ **Beautiful Landing Page** - Showcasing Arka with features  
 ✅ **Public Request Form** - No login required  
 ✅ **User Authentication** - Login, signup, dashboard  
-✅ **Admin Panel** - Manage requests & payments  
-✅ **Payment Integration** - Razorpay ready (test mode)  
+✅ **Admin Panel** - Manage requests & manual payment tracking  
+✅ **Payment Workflow** - Manual invoicing handled by admin  
 ✅ **Email Notifications** - Auto-send on status updates  
 ✅ **Status Tracking** - Timeline visualization  
 ✅ **Git Repository** - All files committed & ready  
@@ -57,8 +57,6 @@ git push -u origin main
 DEBUG=false
 ALLOWED_HOSTS=arka.onrender.com,localhost
 SECRET_KEY=<paste-output-from-this-command>
-RAZORPAY_KEY_ID=rzp_test_YOUR_KEY_ID
-RAZORPAY_KEY_SECRET=rzp_test_YOUR_KEY_SECRET
 ```
 
 **Generate SECRET_KEY:**
@@ -77,13 +75,7 @@ python -c "from django.core.management.utils import get_random_secret_key; print
 4. Enter username, email, password
 ```
 
-### 7. Get Razorpay Test Keys
-```
-1. Go to https://dashboard.razorpay.com/#/app/keys
-2. Copy Test Key ID and Test Secret
-3. Update Render environment variables
-4. Render auto-redeployes
-```
+<!-- Razorpay integration steps removed. Manual payments are supported via admin notes and payment_status. -->
 
 ## 🔗 Your Live URLs (After Deploy)
 
@@ -91,15 +83,9 @@ python -c "from django.core.management.utils import get_random_secret_key; print
 - **Admin**: `https://arka.onrender.com/admin/`
 - **Request Form**: `https://arka.onrender.com/request-website/`
 
-## 💳 Payment Testing (Live)
+## 💳 Payments
 
-1. Submit a request on your live site
-2. Dashboard shows "Proceed with Payment" button
-3. Click button → Payment page
-4. Click "Pay Now" → Razorpay modal
-5. Use test card: **4111 1111 1111 1111**
-6. Any future date + any CVC
-7. Payment processes → Success page
+Automated payments are disabled. Admins should update `payment_status` and `payment_note` on each request and send manual invoices to clients.
 
 ## 📁 Project Files
 

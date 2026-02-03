@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Arka{% endblock %}</title>
+    <meta name="description" content="Arka - business focused websites">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+      /* Minimal base styles — ready for Tailwind/Bootstrap later */
+      :root{--accent:#667eea;--accent-2:#764ba2;--muted:#666}
+      html,body{height:100%;margin:0;font-family:Segoe UI,system-ui,Arial,Helvetica,sans-serif;color:#222}
+      a{color:var(--accent);text-decoration:none}
+      .site-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 24px}
+      .nav-links a{margin-left:18px}
+      .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    </style>
+    {% block head_extra %}{% endblock %}
+  </head>
+  <body>
+    <header class="site-nav" role="banner">
+      <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+        <div class="brand">
+          <a href="/" aria-label="Arka home" style="font-weight:700;font-size:1.1rem">🚀 Arka</a>
+        </div>
+        <nav class="nav-links" role="navigation" aria-label="Main navigation">
+          <a href="{% url 'request-website' %}">Request Website</a>
+          <a href="{% url 'login' %}">Login</a>
+        </nav>
+      </div>
+    </header>
+
+    <main role="main">{% block content %}{% endblock %}</main>
+
+    <footer style="background:#111;color:#fff;padding:40px 0;margin-top:60px">
+      <div class="container">
+        <p style="margin:0">© {{ now|date:"Y" }} Arka. Building websites that solve business problems.</p>
+      </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+  </body>
+</html>
