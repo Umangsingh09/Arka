@@ -127,7 +127,7 @@ ALLOWED_HOSTS=localhost,127.0.0.1
 
 ## Support
 
-📧 Email: contact@arka.com
+📧 Email: rajumang74@gmail.com
 
 ## License
 
