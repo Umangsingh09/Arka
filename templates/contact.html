@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Arka - Get in Touch{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section style="background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); padding: 80px 20px; display: flex; align-items: center; min-height: 400px;">
+  <div style="max-width: 80rem; margin: 0 auto; width: 100%;">
+    <div style="max-width: 50rem;" class="animate-on-scroll">
+      <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: #111827; margin-bottom: 24px; line-height: 1.2;">
+        Get in Touch with Arka
+      </h1>
+      <p style="font-size: 1.1rem; color: #4b5563; margin-bottom: 32px; line-height: 1.8; max-width: 600px;">
+        Have questions? Want to discuss your project? Send us a message and we'll get back to you within 24 hours.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form Section -->
+<section style="padding: 80px 20px; background: white;">
+  <div style="max-width: 56rem; margin: 0 auto;">
+    <!-- Messages -->
+    {% if messages %}
+      {% for message in messages %}
+        <div style="background: #d1fae5; border: 1px solid #a7f3d0; color: #065f46; padding: 16px; border-radius: 8px; margin-bottom: 24px;">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- Contact Form -->
+    <form method="post" style="background: #f9fafb; padding: 40px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+      {% csrf_token %}
+      
+      <div style="margin-bottom: 24px;">
+        <label for="id_name" style="display: block; font-weight: 600; margin-bottom: 8px; color: #111827;">
+          {{ form.name.label }}
+        </label>
+        {{ form.name }}
+        {% if form.name.errors %}
+          <div style="color: #dc2626; font-size: 0.875rem; margin-top: 6px;">
+            {% for error in form.name.errors %}{{ error }}{% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <label for="id_email" style="display: block; font-weight: 600; margin-bottom: 8px; color: #111827;">
+          {{ form.email.label }}
+        </label>
+        {{ form.email }}
+        {% if form.email.errors %}
+          <div style="color: #dc2626; font-size: 0.875rem; margin-top: 6px;">
+            {% for error in form.email.errors %}{{ error }}{% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <label for="id_message" style="display: block; font-weight: 600; margin-bottom: 8px; color: #111827;">
+          {{ form.message.label }}
+        </label>
+        {{ form.message }}
+        {% if form.message.errors %}
+          <div style="color: #dc2626; font-size: 0.875rem; margin-top: 6px;">
+            {% for error in form.message.errors %}{{ error }}{% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn-primary" style="width: 100%; padding: 16px 24px; font-size: 1rem; border: none; cursor: pointer;">
+        Send Message →
+      </button>
+    </form>
+
+    <!-- Contact Info -->
+    <div style="margin-top: 60px; padding: 40px; background: #f9fafb; border-radius: 12px;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; color: #111827;">Other Ways to Reach Us</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px;">
+        <!-- Email -->
+        <div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 12px; color: #111827;">📧 Email</h3>
+          <p style="color: #4b5563; margin-bottom: 8px;">
+            <a href="mailto:contact@arka.com" style="color: #2563eb; text-decoration: none;">
+              contact@arka.com
+            </a>
+          </p>
+          <p style="color: #9ca3af; font-size: 0.875rem;">
+            We respond within 24 hours
+          </p>
+        </div>
+
+        <!-- Phone (Optional) -->
+        <div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 12px; color: #111827;">📱 Quick Request</h3>
+          <p style="color: #4b5563; margin-bottom: 8px;">
+            <a href="/request-website/" style="color: #2563eb; text-decoration: none;">
+              Submit a Website Request
+            </a>
+          </p>
+          <p style="color: #9ca3af; font-size: 0.875rem;">
+            Tell us about your project
+          </p>
+        </div>
+
+        <!-- Response Time -->
+        <div>
+          <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 12px; color: #111827;">⏱️ Response Time</h3>
+          <p style="color: #4b5563; margin-bottom: 8px;">
+            24-hour turnaround
+          </p>
+          <p style="color: #9ca3af; font-size: 0.875rem;">
+            Weekdays 9 AM – 6 PM
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

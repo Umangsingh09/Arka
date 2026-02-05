@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: arka-backend
+    runtime: python
+    runtimeVersion: 3.13
+    buildCommand: pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput
+    startCommand: gunicorn arka_backend.wsgi:application --bind 0.0.0.0:10000
+    envVars:
+      - key: SECRET_KEY
+        scope: build,runtime
+        value: YOUR_SECRET_KEY_HERE_CHANGE_THIS
+      - key: DEBUG
+        value: false
+      - key: ALLOWED_HOSTS
+        value: arka.onrender.com,localhost,127.0.0.1

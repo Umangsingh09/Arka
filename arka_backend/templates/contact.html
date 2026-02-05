@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Arka - Get in Touch{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="section" style="background:linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);text-align:center;padding-top:4rem;padding-bottom:4rem;">
+  <div style="max-width:900px;margin:0 auto;" data-scroll-animate>
+    <h1 style="margin-bottom:1.5rem;">Get in Touch</h1>
+    <p style="font-size:1.1rem;color:var(--text-secondary);max-width:600px;margin:0 auto;line-height:1.8;">
+      Have a project in mind? Let's talk about how Arka can help solve your business challenges.
+    </p>
+  </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="section" style="background:var(--bg-primary);">
+  <div style="max-width:700px;margin:0 auto;" data-scroll-animate>
+    
+    <!-- Messages -->
+    {% if messages %}
+      {% for message in messages %}
+        <div style="background:#d1fae5;border:1px solid #a7f3d0;color:#065f46;padding:1rem;border-radius:10px;margin-bottom:2rem;font-weight:500;">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- Contact Form -->
+    <form method="post" style="background:var(--bg-secondary);padding:2.5rem;border-radius:14px;border:1px solid var(--border);">
+      {% csrf_token %}
+      
+      <div style="margin-bottom:1.5rem;">
+        <label for="id_name" style="display:block;font-weight:600;margin-bottom:0.75rem;color:var(--text-primary);font-size:0.95rem;">
+          {{ form.name.label }}
+        </label>
+        {{ form.name }}
+        {% if form.name.errors %}
+          <div style="color:#ef4444;font-size:0.875rem;margin-top:0.5rem;">
+            {% for error in form.name.errors %}{{ error }}{% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div style="margin-bottom:1.5rem;">
+        <label for="id_email" style="display:block;font-weight:600;margin-bottom:0.75rem;color:var(--text-primary);font-size:0.95rem;">
+          {{ form.email.label }}
+        </label>
+        {{ form.email }}
+        {% if form.email.errors %}
+          <div style="color:#ef4444;font-size:0.875rem;margin-top:0.5rem;">
+            {% for error in form.email.errors %}{{ error }}{% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div style="margin-bottom:2rem;">
+        <label for="id_message" style="display:block;font-weight:600;margin-bottom:0.75rem;color:var(--text-primary);font-size:0.95rem;">
+          {{ form.message.label }}
+        </label>
+        {{ form.message }}
+        {% if form.message.errors %}
+          <div style="color:#ef4444;font-size:0.875rem;margin-top:0.5rem;">
+            {% for error in form.message.errors %}{{ error }}{% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%;padding:1rem;font-size:1rem;border:none;cursor:pointer;">
+        Send Message →
+      </button>
+    </form>
+
+    <!-- Contact Info -->
+    <div style="margin-top:4rem;padding:2.5rem;background:var(--bg-secondary);border-radius:14px;border:1px solid var(--border);">
+      <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:2rem;color:var(--text-primary);">Other Ways to Connect</h2>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;">
+        <!-- Email -->
+        <div>
+          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.75rem;color:var(--text-primary);">📧 Email</h3>
+          <p style="color:var(--text-secondary);margin-bottom:0.5rem;font-weight:500;">
+            <a href="mailto:rajumang74@gmail.com" style="color:var(--primary);text-decoration:none;font-weight:600;">
+              rajumang74@gmail.com
+            </a>
+          </p>
+          <p style="color:var(--text-tertiary);font-size:0.9rem;">
+            24-hour response
+          </p>
+        </div>
+
+        <!-- Quick Request -->
+        <div>
+          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.75rem;color:var(--text-primary);">🚀 Project Request</h3>
+          <p style="color:var(--text-secondary);margin-bottom:0.5rem;font-weight:500;">
+            <a href="/request-website/" style="color:var(--primary);text-decoration:none;font-weight:600;">
+              Submit Request
+            </a>
+          </p>
+          <p style="color:var(--text-tertiary);font-size:0.9rem;">
+            Describe your needs
+          </p>
+        </div>
+
+        <!-- Response Time -->
+        <div>
+          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.75rem;color:var(--text-primary);">⏱️ Response Time</h3>
+          <p style="color:var(--text-secondary);margin-bottom:0.5rem;font-weight:500;">
+            Within 24 hours
+          </p>
+          <p style="color:var(--text-tertiary);font-size:0.9rem;">
+            Weekdays 9 AM – 6 PM
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 0.875rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    outline: 0;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+    background: var(--bg-primary);
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+</style>
+
+{% endblock %}

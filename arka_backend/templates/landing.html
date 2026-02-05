@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+
+{% block title %}Arka - Solving Business Problems with Technology{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section - Premium Design -->
+<section style="position:relative;padding:5rem 1.5rem;overflow:hidden;min-height:700px;display:flex;align-items:center;justify-content:center;">
+  <!-- Background blobs -->
+  <div class="hero-blob-1" style=""></div>
+  <div class="hero-blob-2" style=""></div>
+  <div class="hero-bg" style=""></div>
+  
+  <!-- Hero Content -->
+  <div style="max-width:1000px;margin:0 auto;position:relative;z-index:10;text-align:center;width:100%;" data-scroll-animate>
+    <!-- Logo -->
+    <div class="float" style="font-size:clamp(4rem,10vw,6rem);margin-bottom:2rem;display:inline-block;">🚀</div>
+    
+    <!-- Main Heading -->
+    <h1 style="margin-bottom:1rem;color:var(--text-primary);" data-animate>
+      We Don't Build Websites
+    </h1>
+    
+    <!-- Subheading with emphasis -->
+    <h2 style="margin-bottom:1.5rem;font-size:clamp(1.5rem,3vw,2rem);color:var(--text-secondary);font-weight:600;" data-animate>
+      We Solve Business Problems
+    </h2>
+    
+    <!-- Value Proposition -->
+    <p style="max-width:600px;margin:0 auto 3rem;font-size:1.1rem;color:var(--text-secondary);line-height:1.8;" data-animate>
+      Custom solutions designed to drive growth, increase revenue, and streamline operations for ambitious companies.
+    </p>
+    
+    <!-- CTA Buttons -->
+    <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;" data-animate>
+      <a href="{% url 'request-website' %}" class="btn btn-primary" style="font-size:1rem;padding:1rem 2rem;">
+        Request a Solution →
+      </a>
+      <a href="#how-it-works" class="btn btn-secondary" style="font-size:1rem;padding:1rem 2rem;">
+        How It Works
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Badges Section -->
+<section style="background:var(--bg-secondary);padding:3rem 1.5rem;border-bottom:1px solid var(--border);" data-scroll-animate>
+  <div style="max-width:1400px;margin:0 auto;">
+    <p style="text-align:center;color:var(--text-secondary);margin-bottom:2rem;font-weight:500;">Trusted by leading companies</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;text-align:center;">
+      <div data-animate>
+        <div style="font-size:2.5rem;font-weight:900;color:var(--primary);margin-bottom:0.5rem;">{{ total_projects }}+</div>
+        <p style="color:var(--text-secondary);font-weight:500;">Solutions Delivered</p>
+      </div>
+      <div data-animate>
+        <div style="font-size:2.5rem;font-weight:900;color:var(--accent);margin-bottom:0.5rem;">{{ happy_clients }}+</div>
+        <p style="color:var(--text-secondary);font-weight:500;">Happy Clients</p>
+      </div>
+      <div data-animate>
+        <div style="font-size:2.5rem;font-weight:900;color:var(--success);margin-bottom:0.5rem;">{{ active_projects }}+</div>
+        <p style="color:var(--text-secondary);font-weight:500;">Active Projects</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section" style="background:var(--bg-primary);">
+  <div style="max-width:1400px;margin:0 auto;" data-scroll-animate>
+    <h2 class="section-title" style="margin-bottom:1rem;">About Arka</h2>
+    <p class="section-subtitle" style="margin-bottom:2rem;">We're a team of problem-solvers who combine strategic thinking with technical expertise.</p>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+      <div>
+        <p style="margin-bottom:1.5rem;color:var(--text-secondary);line-height:2;">
+          At Arka, we believe that <strong style="color:var(--text-primary);font-weight:700;">great technology solves real problems</strong>—not the other way around.
+        </p>
+        <p style="margin-bottom:1.5rem;color:var(--text-secondary);line-height:2;">
+          We work with ambitious companies to understand their challenges, design elegant solutions, and deliver measurable results. Every project is an opportunity to drive growth.
+        </p>
+        <p style="color:var(--text-secondary);line-height:2;">
+          From custom platforms to strategic integrations, we bring clarity, confidence, and execution to digital transformation.
+        </p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+        <div class="card" style="padding:1.5rem;">
+          <h3 style="margin-bottom:0.75rem;">🎯 Focused</h3>
+          <p style="font-size:0.95rem;">We concentrate on what matters—your business goals.</p>
+        </div>
+        <div class="card" style="padding:1.5rem;">
+          <h3 style="margin-bottom:0.75rem;">⚡ Swift</h3>
+          <p style="font-size:0.95rem;">Fast delivery without compromising quality.</p>
+        </div>
+        <div class="card" style="padding:1.5rem;">
+          <h3 style="margin-bottom:0.75rem;">📊 Measurable</h3>
+          <p style="font-size:0.95rem;">Results you can track and tangible outcomes.</p>
+        </div>
+        <div class="card" style="padding:1.5rem;">
+          <h3 style="margin-bottom:0.75rem;">🤝 Reliable</h3>
+          <p style="font-size:0.95rem;">Partners you can trust for the long haul.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Arka Section -->
+<section id="why-arka" class="section" style="background:var(--bg-secondary);">
+  <div style="max-width:1400px;margin:0 auto;">
+    <h2 class="section-title" data-scroll-animate>Why Choose Arka</h2>
+    <p class="section-subtitle" data-scroll-animate>We combine strategy, design, and engineering to solve complex business challenges.</p>
+    
+    <div class="grid-cols-3" data-scroll-animate>
+      <div class="card" data-animate>
+        <div style="font-size:3rem;margin-bottom:1rem;">💡</div>
+        <h3 style="margin-bottom:0.75rem;">Strategic Thinking</h3>
+        <p>We understand your business first. Technology comes second.</p>
+      </div>
+      <div class="card" data-animate>
+        <div style="font-size:3rem;margin-bottom:1rem;">🛠️</div>
+        <h3 style="margin-bottom:0.75rem;">Custom Solutions</h3>
+        <p>No templates. No shortcuts. Built specifically for your needs.</p>
+      </div>
+      <div class="card" data-animate>
+        <div style="font-size:3rem;margin-bottom:1rem;">📈</div>
+        <h3 style="margin-bottom:0.75rem;">Growth-Focused</h3>
+        <p>Every feature designed to drive revenue and reduce friction.</p>
+      </div>
+      <div class="card" data-animate>
+        <div style="font-size:3rem;margin-bottom:1rem;">⚙️</div>
+        <h3 style="margin-bottom:0.75rem;">Scalable Code</h3>
+        <p>Clean architecture that grows with your business.</p>
+      </div>
+      <div class="card" data-animate>
+        <div style="font-size:3rem;margin-bottom:1rem;">🚀</div>
+        <h3 style="margin-bottom:0.75rem;">Fast Deployment</h3>
+        <p>From concept to launch in record time, without cutting corners.</p>
+      </div>
+      <div class="card" data-animate>
+        <div style="font-size:3rem;margin-bottom:1rem;">🤝</div>
+        <h3 style="margin-bottom:0.75rem;">True Partnership</h3>
+        <p>We're invested in your success, not just delivering features.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="section" style="background:var(--bg-primary);">
+  <div style="max-width:1400px;margin:0 auto;">
+    <h2 class="section-title" data-scroll-animate>How It Works</h2>
+    <p class="section-subtitle" data-scroll-animate>A straightforward process that gets you results fast.</p>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;">
+      <div style="position:relative;" data-scroll-animate>
+        <div class="card" style="text-align:center;height:100%;">
+          <div style="width:50px;height:50px;background:var(--gradient-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:1.5rem;margin:0 auto 1.5rem;">1</div>
+          <h3 style="margin-bottom:1rem;">Discovery & Strategy</h3>
+          <p style="font-size:0.95rem;">We deeply understand your business, goals, and challenges through strategic conversations.</p>
+        </div>
+      </div>
+      
+      <div style="position:relative;" data-scroll-animate>
+        <div class="card" style="text-align:center;height:100%;">
+          <div style="width:50px;height:50px;background:var(--gradient-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:1.5rem;margin:0 auto 1.5rem;">2</div>
+          <h3 style="margin-bottom:1rem;">Design & Planning</h3>
+          <p style="font-size:0.95rem;">We create a detailed roadmap and design system tailored to your unique requirements.</p>
+        </div>
+      </div>
+      
+      <div style="position:relative;" data-scroll-animate>
+        <div class="card" style="text-align:center;height:100%;">
+          <div style="width:50px;height:50px;background:var(--gradient-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:1.5rem;margin:0 auto 1.5rem;">3</div>
+          <h3 style="margin-bottom:1rem;">Build & Iterate</h3>
+          <p style="font-size:0.95rem;">We build with clean code and involve you in every milestone for transparent progress.</p>
+        </div>
+      </div>
+      
+      <div style="position:relative;" data-scroll-animate>
+        <div class="card" style="text-align:center;height:100%;">
+          <div style="width:50px;height:50px;background:var(--gradient-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:1.5rem;margin:0 auto 1.5rem;">4</div>
+          <h3 style="margin-bottom:1rem;">Launch & Support</h3>
+          <p style="font-size:0.95rem;">We handle deployment and provide ongoing support to ensure long-term success.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section - Premium -->
+<section class="section" style="background:var(--gradient-primary);color:white;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%, rgba(139,92,246,0.2), transparent 50%);z-index:0;pointer-events:none;"></div>
+  
+  <div style="max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:1;" data-scroll-animate>
+    <h2 style="color:white;margin-bottom:1rem;" data-animate>Ready to Solve Your Business Challenges?</h2>
+    <p style="color:rgba(255,255,255,0.95);font-size:1.1rem;margin-bottom:2.5rem;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.8;" data-animate>
+      Let's discuss your project and discover how Arka can drive growth for your business.
+    </p>
+    <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;" data-animate>
+      <a href="{% url 'request-website' %}" class="btn" style="background:white;color:var(--primary);font-weight:700;padding:1rem 2rem;font-size:1rem;">
+        Get Started Today
+      </a>
+      <a href="{% url 'contact' %}" class="btn" style="background:rgba(255,255,255,0.15);color:white;border:2px solid white;padding:0.875rem 2rem;font-size:1rem;font-weight:600;">
+        Contact Us
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

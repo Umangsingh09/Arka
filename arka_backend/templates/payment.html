@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Payment Information - Arka</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --primary: #1e40af;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --border: #e2e8f0;
+        --gradient-primary: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      }
+      * { box-sizing: border-box; }
+      body { background: var(--bg-secondary); color: var(--text-primary); font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+      h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 2.5rem; }
+      p { color: var(--text-secondary); line-height: 1.7; }
+      .card { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 14px; padding: 2.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+      .btn { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: 10px; font-weight: 600; border: 0; cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
+      .btn-primary { background: var(--gradient-primary); color: white; }
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
+    </style>
+  </head>
+  <body>
+    <main style="max-width:700px;margin:60px auto;padding:0 1.5rem;">
+      <div class="card">
+        <h1 style="margin-bottom:1.5rem;">Payment Information</h1>
+        <p style="font-size:1.1rem;margin-bottom:2rem;">
+          Automated payments are currently disabled. Payment details will be shared after discussion via email or phone. Please contact the admin for invoices or manual payment instructions.
+        </p>
+        <p style="margin-bottom:1.5rem;">
+          <strong>What happens next:</strong>
+        </p>
+        <ol style="color:var(--text-secondary);line-height:2;margin-bottom:2rem;padding-left:1.5rem;">
+          <li>We'll review your project request thoroughly</li>
+          <li>Our team will prepare a detailed proposal and invoice</li>
+          <li>Payment terms will be discussed based on your needs</li>
+          <li>Project begins upon payment confirmation</li>
+        </ol>
+        <a href="/dashboard/" class="btn btn-primary">Back to Dashboard</a>
+      </div>
+    </main>
+  </body>
+</html>

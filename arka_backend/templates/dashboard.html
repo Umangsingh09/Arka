@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block title %}My Dashboard - Arka{% endblock %}
+
+{% block content %}
+
+<!-- Dashboard Header -->
+<section class="section" style="background:var(--bg-secondary);border-bottom:1px solid var(--border);padding-top:2rem;padding-bottom:2rem;">
+  <div style="max-width:1400px;margin:0 auto;">
+    <h1 style="margin-bottom:0.5rem;">Welcome, {{ user.first_name|default:user.username }}!</h1>
+    <p style="color:var(--text-secondary);font-size:1.05rem;margin:0;">Track your project requests and stay updated on progress</p>
+  </div>
+</section>
+
+<!-- Dashboard Content -->
+<section class="section" style="background:var(--bg-primary);">
+  <div style="max-width:1400px;margin:0 auto;">
+    
+    <!-- Stats -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-bottom:3rem;">
+      <div class="card" style="text-align:center;padding:1.5rem;">
+        <div style="font-size:2rem;font-weight:900;color:var(--primary);margin-bottom:0.5rem;">{{ total_requests }}</div>
+        <p style="color:var(--text-secondary);margin:0;font-weight:500;">Total Requests</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1.5rem;">
+        <div style="font-size:2rem;font-weight:900;color:var(--accent);margin-bottom:0.5rem;">{{ requests|length }}</div>
+        <p style="color:var(--text-secondary);margin:0;font-weight:500;">Active Projects</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1.5rem;">
+        <div style="font-size:2rem;font-weight:900;color:var(--success);margin-bottom:0.5rem;">2-4 weeks</div>
+        <p style="color:var(--text-secondary);margin:0;font-weight:500;">Average Timeline</p>
+      </div>
+    </div>
+
+    <!-- Requests List -->
+    <div>
+      <h2 style="margin-bottom:1.5rem;">Your Requests</h2>
+      
+      {% if requests %}
+        <!-- Requests Grid -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1.5rem;">
+          {% for request in requests %}
+            <div class="card" style="overflow:hidden;display:flex;flex-direction:column;">
+              <!-- Status Badge -->
+              <div style="padding:1rem;background:var(--bg-secondary);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+                <h3 style="margin:0;font-size:1.1rem;">{{ request.business_name }}</h3>
+                <span style="
+                  display:inline-block;
+                  padding:0.35rem 0.75rem;
+                  border-radius:6px;
+                  font-size:0.8rem;
+                  font-weight:700;
+                  background:
+                  {%if request.status == 'pending'%}#fef3c7{%elif request.status == 'in_progress'%}#dbeafe{%elif request.status == 'completed'%}#dcfce7{%else%}#f3f4f6{%endif%};
+                  color:
+                  {%if request.status == 'pending'%}#92400e{%elif request.status == 'in_progress'%}#0c4a6e{%elif request.status == 'completed'%}#065f46{%else%}#374151{%endif%};
+                ">
+                  {{ request.get_status_display }}
+                </span>
+              </div>
+              
+              <!-- Details -->
+              <div style="padding:1.5rem;flex:1;">
+                <p style="margin:0 0 1rem 0;color:var(--text-secondary);font-size:0.95rem;">
+                  <strong>Type:</strong> {{ request.get_website_type_display }}
+                </p>
+                <p style="margin:0 0 1rem 0;color:var(--text-secondary);font-size:0.95rem;">
+                  <strong>Budget:</strong> {{ request.budget|default:"Not specified" }}
+                </p>
+                <p style="margin:0 0 1rem 0;color:var(--text-secondary);font-size:0.95rem;line-height:1.5;">
+                  <strong>Description:</strong><br/>{{ request.description|truncatewords:20 }}
+                </p>
+                <p style="margin:0;color:var(--text-tertiary);font-size:0.85rem;">
+                  <strong>Submitted:</strong> {{ request.created_at|date:"M d, Y" }}
+                </p>
+              </div>
+              
+              <!-- Admin Notes (if available) -->
+              {% if request.admin_notes %}
+                <div style="padding:1rem;background:linear-gradient(135deg, rgba(59,130,246,0.05) 0%, rgba(139,92,246,0.05) 100%);border-top:1px solid var(--border);">
+                  <p style="margin:0;color:var(--text-secondary);font-size:0.9rem;font-weight:500;">
+                    <strong>Update:</strong> {{ request.admin_notes }}
+                  </p>
+                </div>
+              {% endif %}
+              
+              <!-- CTA -->
+              {% if request.status != 'completed' %}
+                <div style="padding:1rem;background:var(--bg-secondary);border-top:1px solid var(--border);">
+                  <a href="{% url 'contact' %}" class="btn btn-primary" style="display:block;text-align:center;padding:0.75rem;font-size:0.9rem;margin:0;">
+                    Get Update →
+                  </a>
+                </div>
+              {% else %}
+                <div style="padding:1rem;background:linear-gradient(135deg, rgba(16,185,129,0.05) 0%, rgba(16,185,129,0.05) 100%);border-top:1px solid var(--border);text-align:center;">
+                  <p style="margin:0;color:var(--success);font-weight:600;">✓ Project Completed</p>
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <!-- Empty State -->
+        <div class="card" style="text-align:center;padding:3rem;background:linear-gradient(135deg, var(--gradient-mesh));">
+          <div style="font-size:3rem;margin-bottom:1rem;">📋</div>
+          <h3 style="margin-bottom:0.75rem;">No Requests Yet</h3>
+          <p style="color:var(--text-secondary);margin-bottom:1.5rem;max-width:400px;margin-left:auto;margin-right:auto;">
+            Start by submitting your first project request to get things rolling.
+          </p>
+          <a href="{% url 'request-website' %}" class="btn btn-primary">
+            Submit Your First Request →
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Additional Info Section -->
+<section class="section" style="background:var(--bg-secondary);border-top:1px solid var(--border);">
+  <div style="max-width:1400px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;">
+      <div>
+        <h3 style="margin-bottom:1rem;">💬 Questions?</h3>
+        <p style="color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.7;">
+          Have questions about your project? Our team is always ready to help.
+        </p>
+        <a href="{% url 'contact' %}" class="btn btn-secondary">Contact Support</a>
+      </div>
+      <div>
+        <h3 style="margin-bottom:1rem;">📧 Email Support</h3>
+        <p style="color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.7;">
+          Reach out directly to our team for faster response.
+        </p>
+        <a href="mailto:rajumang74@gmail.com" class="btn btn-secondary">Send Email</a>
+      </div>
+      <div>
+        <h3 style="margin-bottom:1rem;">➕ New Request</h3>
+        <p style="color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.7;">
+          Have another project idea? We'd love to hear about it.
+        </p>
+        <a href="{% url 'request-website' %}" class="btn btn-secondary">New Request</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

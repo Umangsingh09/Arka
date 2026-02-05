@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Website - Arka</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px 15px 0 0 !important;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .card-header h1 {
+            color: white;
+            margin: 0;
+            font-size: 2.2em;
+            font-weight: bold;
+        }
+        .card-header p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        .card-body {
+            padding: 40px;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            padding: 12px 15px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 14px 40px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 8px;
+            width: 100%;
+            color: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 30px;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .stats {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            margin-top: 30px;
+        }
+        .stats h5 {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 2em;
+        }
+        .stats p {
+            color: #666;
+            font-size: 0.95em;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .errorlist {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0 0 0;
+            color: #dc3545;
+            font-size: 0.9em;
+        }
+        .login-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1050;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-modal-overlay.show {
+            display: flex;
+        }
+        .login-modal {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        .login-modal h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .login-modal p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.05em;
+        }
+        .modal-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .btn-modal {
+            padding: 12px 20px;
+            font-size: 1em;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-login-modal {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-login-modal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-signup-modal {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #667eea;
+        }
+        .btn-signup-modal:hover {
+            background: #667eea;
+            color: white;
+        }
+        .close-modal {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .close-modal:hover {
+            color: #000;
+        }
+        .user-badge {
+            background: #d4f1d4;
+            color: #155724;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>🌐 Request Your Website</h1>
+                <p>Tell us about your project & we'll bring it to life</p>
+            </div>
+            <div class="card-body">
+                <!-- Messages -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="{% if message.tags %}{{ message.tags }}{% else %}success{% endif %}-message">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- User Status -->
+                {% if user.is_authenticated %}
+                    <div class="user-badge">
+                        ✅ Logged in as: <strong>{{ user.username }}</strong>
+                    </div>
+                {% endif %}
+
+                <!-- Form -->
+                <form method="POST" novalidate id="requestForm">
+                    {% csrf_token %}
+
+                    <!-- Business Name Field -->
+                    <div class="form-group">
+                        <label for="{{ form.business_name.id_for_label }}" class="form-label">
+                            🏢 {{ form.business_name.label }}
+                        </label>
+                        {{ form.business_name }}
+                        {% if form.business_name.errors %}
+                            <ul class="errorlist">
+                                {% for error in form.business_name.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+
+                    <!-- Website Type Field -->
+                    <div class="form-group">
+                        <label for="{{ form.website_type.id_for_label }}" class="form-label">
+                            🌐 {{ form.website_type.label }}
+                        </label>
+                        {{ form.website_type }}
+                        {% if form.website_type.errors %}
+                            <ul class="errorlist">
+                                {% for error in form.website_type.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}" class="form-label">
+                            📧 {{ form.email.label }}
+                        </label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <ul class="errorlist">
+                                {% for error in form.email.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+
+                    <!-- Description Field -->
+                    <div class="form-group">
+                        <label for="{{ form.description.id_for_label }}" class="form-label">
+                            📝 {{ form.description.label }}
+                        </label>
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                            <ul class="errorlist">
+                                {% for error in form.description.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+
+                    <!-- Budget Field -->
+                    <div class="form-group">
+                        <label for="{{ form.budget.id_for_label }}" class="form-label">
+                            💰 {{ form.budget.label }}
+                        </label>
+                        {{ form.budget }}
+                        {% if form.budget.errors %}
+                            <ul class="errorlist">
+                                {% for error in form.budget.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-submit">
+                        ✨ Submit Request
+                    </button>
+                </form>
+
+                <!-- Stats -->
+                <div class="stats">
+                    <h5>{{ total_requests }}</h5>
+                    <p>website requests received 🚀</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login/Signup Modal (for non-authenticated users) -->
+    <div class="login-modal-overlay" id="loginModal">
+        <div class="login-modal">
+            <span class="close-modal" onclick="closeLoginModal()">&times;</span>
+            <h2>📋 Create an Account</h2>
+            <p>Save and track your website request from your personal dashboard</p>
+            <div class="modal-buttons">
+                <a href="{% url 'login' %}" class="btn-modal btn-login-modal">Login</a>
+                <a href="{% url 'signup' %}" class="btn-modal btn-signup-modal">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const form = document.getElementById('requestForm');
+        const loginModal = document.getElementById('loginModal');
+
+        function closeLoginModal() {
+            loginModal.classList.remove('show');
+        }
+
+        form.addEventListener('submit', function(e) {
+            // Check if user is NOT authenticated
+            const isAuthenticated = {{ user.is_authenticated|lower }};
+            
+            if (!isAuthenticated) {
+                e.preventDefault();
+                loginModal.classList.add('show');
+            }
+        });
+
+        // Close modal when clicking outside
+        loginModal.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                closeLoginModal();
+            }
+        });
+    </script>
+</body>
+</html>

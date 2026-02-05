@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Payment Information - Arka{% endblock %}
+
+{% block content %}
+
+<!-- Success Section -->
+<section class="section" style="display:flex;align-items:center;justify-content:center;min-height:500px;background:linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);">
+  <div style="max-width:600px;margin:0 auto;text-align:center;" data-scroll-animate>
+    <!-- Icon -->
+    <div style="font-size:4rem;margin-bottom:2rem;">💰</div>
+    
+    <!-- Content -->
+    <h1 style="margin-bottom:1rem;">Payment Information</h1>
+    <p style="font-size:1.1rem;color:var(--text-secondary);margin-bottom:2rem;line-height:1.8;">
+      Automated payments are currently disabled. We'll share custom payment instructions after discussion with our team.
+    </p>
+    
+    <!-- Next Steps -->
+    <div class="card" style="margin-bottom:2rem;text-align:left;padding:2rem;">
+      <h3 style="margin-bottom:1.5rem;text-align:center;">Next Steps</h3>
+      <ol style="color:var(--text-secondary);line-height:2;margin:0;padding-left:1.5rem;">
+        <li style="margin-bottom:1rem;">We'll review your project request</li>
+        <li style="margin-bottom:1rem;">Our team will contact you with a detailed proposal</li>
+        <li style="margin-bottom:1rem;">Custom payment terms will be discussed</li>
+        <li>Payment confirmation moves your project forward</li>
+      </ol>
+    </div>
+    
+    <!-- CTA -->
+    <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;">
+      <a href="{% url 'dashboard' %}" class="btn btn-primary">
+        Back to Dashboard
+      </a>
+      <a href="{% url 'contact' %}" class="btn btn-secondary">
+        Contact Us
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

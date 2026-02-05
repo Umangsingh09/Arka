@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block title %}Arka - Build Business-Focused Websites{% endblock %}
+
+{% block content %}
+
+<!-- Brand & Logo Section -->
+<section style="padding:3rem 1.25rem;background:var(--bg);text-align:center;">
+  <div style="max-width:88rem;margin:0 auto;">
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;" class="animate-on-scroll">
+      <!-- Large Logo -->
+      <div class="brand-logo" style="font-size:5rem;margin-bottom:1.5rem;animation:pulse 2s infinite;">
+        🚀
+      </div>
+      <!-- Brand Name -->
+      <h1 style="font-size:3.5rem;font-weight:800;color:#0f172a;margin:0 0 0.5rem 0;letter-spacing:-0.02em;">Arka</h1>
+      <!-- Brand Motto -->
+      <p class="brand-motto" style="font-size:1.1rem;color:var(--muted);max-width:500px;font-weight:500;font-style:italic;margin:0;line-height:1.6;">
+        We don't build websites.<br/>We solve business problems.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Hero Section -->
+<section class="hero" style="position:relative;display:flex;align-items:center;justify-content:center;min-height:500px;background:var(--bg)">
+  <div class="hero-bg"></div>
+  <div style="max-width:88rem;margin:0 auto;width:100%;padding:0 1.25rem;position:relative;z-index:1;">
+    <div style="max-width:55rem;" class="animate-on-scroll">
+      <h1 style="margin-bottom:1.5rem;color:#0f172a;">
+        Grow your business with websites that solve real problems
+      </h1>
+      <p style="font-size:1.125rem;margin-bottom:2.5rem;color:var(--muted);max-width:600px;">
+        Arka builds business-focused websites that drive conversions, not just pretty designs. Get a custom website built for your growth in days, not weeks.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:1.5rem;">
+        <a href="{% url 'request-website' %}" class="btn-primary">
+          Request Your Website →
+        </a>
+        <a href="#why-arka" class="btn-ghost">
+          Learn More
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section style="padding:5rem 1.25rem;background:white;">
+  <div style="max-width:88rem;margin:0 auto;">
+    <div style="max-width:55rem;" class="animate-on-scroll">
+      <h2 class="section-title" style="color:#0f172a;margin-bottom:1.5rem;">About Arka</h2>
+      <p style="font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:1.5rem;">
+        Arka is a product-minded team that helps businesses move faster online. 
+        <strong>Anyone can make a website, but Arka focuses on solving real business problems</strong> — 
+        from lead capture and automation to conversion-focused pages that drive revenue.
+      </p>
+      <p style="font-size:1rem;color:var(--muted);line-height:1.8;">
+        We combine strategic thinking, clean code, and measurable outcomes. Your website becomes 
+        a growth channel, not just a digital business card.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Arka Section -->
+<section id="why-arka" style="padding:5rem 1.25rem;background:var(--bg);">
+  <div style="max-width:88rem;margin:0 auto;">
+    <h2 class="section-title animate-on-scroll" style="color:#0f172a;margin-bottom:3rem;">Why Choose Arka</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:2rem;margin-top:0;">
+      <div class="card animate-on-scroll" style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:3rem;margin-bottom:1.5rem;">💼</div>
+        <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:1rem;color:#0f172a;">Business-first</h3>
+        <p style="color:var(--muted);flex:1;">We prioritize measurable outcomes — leads, conversions, and retention — not just visuals.</p>
+      </div>
+      <div class="card animate-on-scroll" style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:3rem;margin-bottom:1.5rem;">🛠️</div>
+        <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:1rem;color:#0f172a;">Custom solutions</h3>
+        <p style="color:var(--muted);flex:1;">We build custom features where templates won't scale your business.</p>
+      </div>
+      <div class="card animate-on-scroll" style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:3rem;margin-bottom:1.5rem;">⚡</div>
+        <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:1rem;color:#0f172a;">Scalable & fast</h3>
+        <p style="color:var(--muted);flex:1;">Clean code and simple infrastructure make future changes painless.</p>
+      </div>
+      <div class="card animate-on-scroll" style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:3rem;margin-bottom:1.5rem;">🤝</div>
+        <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:1rem;color:#0f172a;">Real support</h3>
+        <p style="color:var(--muted);flex:1;">We offer handover and ongoing support to keep everything running smoothly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section style="padding:5rem 1.25rem;background:white;">
+  <div style="max-width:88rem;margin:0 auto;">
+    <h2 class="section-title animate-on-scroll" style="text-align:center;color:#0f172a;margin-bottom:3rem;">Trusted by Growing Businesses</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:2rem;margin-top:0;">
+      <div style="text-align:center;padding:1.5rem;" class="animate-on-scroll">
+        <div style="font-size:2.5rem;font-weight:700;color:var(--primary);margin-bottom:.75rem;">{{ total_projects }}</div>
+        <p style="font-size:0.95rem;color:var(--muted);">Projects Completed</p>
+      </div>
+      <div style="text-align:center;padding:1.5rem;" class="animate-on-scroll">
+        <div style="font-size:2.5rem;font-weight:700;color:var(--primary);margin-bottom:.75rem;">{{ active_projects }}</div>
+        <p style="font-size:0.95rem;color:var(--muted);">Active Projects</p>
+      </div>
+      <div style="text-align:center;padding:1.5rem;" class="animate-on-scroll">
+        <div style="font-size:2.5rem;font-weight:700;color:var(--primary);margin-bottom:.75rem;">{{ happy_clients }}</div>
+        <p style="font-size:0.95rem;color:var(--muted);">Happy Clients</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" style="padding:5rem 1.25rem;background:var(--bg);">
+  <div style="max-width:88rem;margin:0 auto;">
+    <h2 class="section-title animate-on-scroll" style="color:#0f172a;margin-bottom:3rem;">How It Works</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:2rem;margin-top:0;">
+      <div style="padding:1.5rem;" class="animate-on-scroll">
+        <div style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:linear-gradient(90deg,var(--primary),var(--primary-600));color:white;border-radius:50%;font-weight:700;font-size:1.25rem;margin-bottom:1.5rem;margin-left:auto;margin-right:auto;">1</div>
+        <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:1rem;color:#0f172a;text-align:center;">Tell us about your business</h3>
+        <p style="color:var(--muted);text-align:center;">Share your goals, customers, and the specific outcome you want to achieve.</p>
+      </div>
+      <div style="padding:1.5rem;" class="animate-on-scroll">
+        <div style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:linear-gradient(90deg,var(--primary),var(--primary-600));color:white;border-radius:50%;font-weight:700;font-size:1.25rem;margin-bottom:1.5rem;margin-left:auto;margin-right:auto;">2</div>
+        <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:1rem;color:#0f172a;text-align:center;">We design & build</h3>
+        <p style="color:var(--muted);text-align:center;">Our team delivers a tested, conversion-focused website in days.</p>
+      </div>
+      <div style="padding:1.5rem;" class="animate-on-scroll">
+        <div style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:linear-gradient(90deg,var(--primary),var(--primary-600));color:white;border-radius:50%;font-weight:700;font-size:1.25rem;margin-bottom:1.5rem;margin-left:auto;margin-right:auto;">3</div>
+        <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:1rem;color:#0f172a;text-align:center;">Grow your business</h3>
+        <p style="color:var(--muted);text-align:center;">Launch, measure results, and iterate to increase revenue and leads.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section id="contact" style="background:linear-gradient(90deg,var(--primary),var(--primary-600));color:white;padding:5rem 1.25rem;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(800px 400px at 20% 50%, rgba(255,255,255,0.06), transparent 50%);pointer-events:none;"></div>
+  <div style="max-width:56rem;margin:0 auto;text-align:center;position:relative;z-index:1;" class="animate-on-scroll">
+    <h2 style="font-size:clamp(2rem,5vw,3rem);font-weight:700;margin-bottom:1.5rem;">Ready to get started?</h2>
+    <p style="font-size:1.125rem;margin-bottom:2rem;opacity:0.95;">
+      Let's talk about your project and how Arka can help you grow.
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;">
+      <a href="{% url 'request-website' %}" class="btn-primary" style="background:white;color:var(--primary);padding:0.875rem 1.5rem;border:0;">
+        Request a Website
+      </a>
+      <a href="{% url 'contact' %}" class="btn-ghost" style="border:2px solid white;color:white;padding:0.75rem 1.75rem;">
+        Contact Us
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
