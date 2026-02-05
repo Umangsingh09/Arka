@@ -89,8 +89,16 @@
     <!-- Navigation -->
     <nav role="navigation" aria-label="Main">
       <div class="nav-container">
-        <a href="{% url 'landing' %}" class="nav-brand" aria-label="Arka Home">
-          🚀 Arka
+        <a href="{% url 'landing' %}" class="nav-brand" aria-label="Arka Home" style="display:flex;align-items:center;gap:0.75rem;font-size:1.125rem;font-weight:700;">
+          <svg width="32" height="32" viewBox="0 0 120 120" style="min-width:32px;min-height:32px;">
+            <!-- Blue Triangle (bottom left) -->
+            <polygon points="30,90 10,120 50,120" fill="#1e40af"/>
+            <!-- Pink Triangle (bottom right) -->
+            <polygon points="70,90 90,120 50,120" fill="#ec4899"/>
+            <!-- Purple Triangle (top) -->
+            <polygon points="60,15 35,65 85,65" fill="#8b5cf6"/>
+          </svg>
+          Arka
         </a>
         <div class="nav-links">
           <a href="#why-arka" class="nav-link">Why Arka</a>
@@ -112,7 +120,17 @@
       <div style="max-width:88rem;margin:0 auto;">
         <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:2rem;margin-bottom:2rem;">
           <div>
-            <h3 style="font-size:1.125rem;font-weight:700;margin-bottom:1rem;">🚀 Arka</h3>
+            <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+              <svg width="40" height="40" viewBox="0 0 120 120" style="min-width:40px;min-height:40px;">
+                <!-- Blue Triangle (bottom left) -->
+                <polygon points="30,90 10,120 50,120" fill="#1e40af"/>
+                <!-- Pink Triangle (bottom right) -->
+                <polygon points="70,90 90,120 50,120" fill="#ec4899"/>
+                <!-- Purple Triangle (top) -->
+                <polygon points="60,15 35,65 85,65" fill="#8b5cf6"/>
+              </svg>
+              <h3 style="font-size:1.125rem;font-weight:700;margin:0;">Arka</h3>
+            </div>
             <p style="color:#9ca3af;">Building websites that solve business problems.</p>
           </div>
           <div>
